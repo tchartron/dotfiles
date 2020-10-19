@@ -15,6 +15,7 @@
 """" Basic Behavior
 
 set number              " show line numbers
+set relativenumber      " Show lines number relative to current line
 set wrap                " wrap lines
 set encoding=utf-8      " set encoding to UTF-8 (default was "latin1")
 set mouse=a             " enable mouse support (might not work well on Mac OS X)
@@ -24,7 +25,6 @@ set showmatch           " highlight matching parentheses / brackets [{()}]
 set laststatus=2        " always show statusline (even with only single window)
 set ruler               " show line and column number of the cursor on right side of statusline
 set visualbell          " blink cursor on error, instead of beeping
-
 
 """" Key Bindings
 
@@ -58,6 +58,8 @@ set smartindent         " even better autoindent (e.g. add indent after '{')
 
 set incsearch           " search as characters are entered
 set hlsearch            " highlight matches
+set ignorecase          " Search case insensitive
+set smartcase           " Search case insensitive if all lowercase but case sensitive if search contains any capital letter
 
 " turn off search highlighting with <CR> (carriage-return)
 nnoremap <CR> :nohlsearch<CR><CR>
