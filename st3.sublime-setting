@@ -3,7 +3,7 @@
     "block_carret": true,
     "bold_folder_labels": true,
     "caret_style": "phase",
-    "color_scheme": "Packages/Material Theme/schemes/Material-Theme-Darker.tmTheme",
+    "color_scheme": "Packages/Theme - Gravity/One Dark Gravity.sublime-color-scheme",
     "draw_white_space": "all",
     "ensure_newline_at_eof_on_save": true,
     "fade_fold_buttons": false,
@@ -12,7 +12,7 @@
     [
         "gray_antialias"
     ],
-    "font_size": 11,
+    "font_size": 12,
     "highlight_line": true,
     "highlight_modified_tabs": true,
     "ignored_packages":
@@ -29,8 +29,22 @@
     "show_encoding": true,
     "show_full_path": true,
     "tab_size": 4,
-    "theme": "Material-Theme-Darker.sublime-theme",
+    "theme": "Gravity One.sublime-theme",
     "translate_tabs_to_spaces": true,
     "trim_trailing_white_space_on_save": true,
-    "vintage_start_in_command_mode": true
+    "vintage_start_in_command_mode": true,
+    "gravity_selected_tab_bold": true,
+    "gravity_sidebar_header": true,
+    "gravity_org_label_size": false,
+    "gravity_tab_font_small": false,
+    "gravity_tab_height_short": true,
+    "gravity_tab_height_tall": false,
+    "gravity_title_bar": true,
+    "gravity_highlight_color_blue": true,
+    "gravity_highlight_color_purple": false,
+    "gravity_highlight_color_pink": false,
+    "gravity_highlight_color_red": false,
+    "gravity_highlight_color_orange": false,
+    "gravity_highlight_color_yellow": false,
+    "gravity_highlight_color_green": false
 }
