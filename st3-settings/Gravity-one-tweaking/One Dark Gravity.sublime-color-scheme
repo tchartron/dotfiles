@@ -24,7 +24,9 @@
         "green2": "hsl(94.9, 38.1%, 62%)",
         "blue1": "hsl(220.2, 100%, 66.1%)",
         "blue2": "hsl(207, 81.6%, 65.9%)",
-        "purple1": "hsl(286.3, 59.8%, 66.9%)"
+        "blue3": "rgb(153,238,255)",
+        "purple1": "hsl(286.3, 59.8%, 66.9%)",
+        "blond": "rgb(234,255,128)"
     },
     "globals":
     {
@@ -55,7 +57,8 @@
         },
         {
             "scope": "string",
-            "foreground": "var(green2)"
+            "foreground": "var(blond)",
+            "font_style": "italic"
         },
         {
             "scope": "constant.numeric",
@@ -71,7 +74,7 @@
         },
         {
             "scope": "variable",
-            "foreground": "var(pink1)"
+            "foreground": "var(blue3)"
         },
         {
             "scope": "keyword.operator",
@@ -107,12 +110,12 @@
             // syntaxes prefer to mark if and else with the conditional variant.
             // The import variant is often used in appropriate situations.
             "scope": "keyword.control",
-            "foreground": "var(yellow1)",
+            "foreground": "var(purple1)",
             "font_style": "italic"
         },
         {
             "scope": "punctuation.definition.annotation | punctuation.definition.variable",
-            "foreground": "var(pink1)"
+            "foreground": "var(blue3)"
         },
         {
             "scope": "variable.other.dollar.only.js",
@@ -120,7 +123,7 @@
         },
         {
             "scope": "storage",
-            "foreground": "var(pink1)"
+            "foreground": "var(blue3)"
         },
         {
             "scope": "storage.type",
@@ -138,7 +141,7 @@
         },
         {
             "scope": "variable.parameter - (source.c | source.c++ | source.objc | source.objc++)",
-            "foreground": "var(pink1)",
+            "foreground": "var(blue3)",
             "font_style": "italic"
         },
         {
