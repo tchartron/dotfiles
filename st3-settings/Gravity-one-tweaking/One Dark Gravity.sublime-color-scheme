@@ -13,6 +13,7 @@
         "bluegray3": "hsl(221.1, 13.5%, 27.6%)",
         "bluegray4": "hsl(219, 9.8%, 40%)",
         "bluegray5": "hsl(219, 13.5%, 71%)",
+        "bluegray6": "rgb(42, 45, 62)", // Testing other blue
         "red1": "hsl(5, 48%, 51%)",
         "pink1": "hsl(355.3, 65.2%, 65.1%)",
         "yellow1": "hsl(29.2, 53.8%, 61%)",
@@ -49,7 +50,8 @@
     [
         {
             "scope": "comment",
-            "foreground": "var(bluegray4)"
+            "foreground": "var(bluegray4)",
+            "font_style": "italic"
         },
         {
             "scope": "string",
@@ -105,7 +107,8 @@
             // syntaxes prefer to mark if and else with the conditional variant.
             // The import variant is often used in appropriate situations.
             "scope": "keyword.control",
-            "foreground": "var(yellow1)"
+            "foreground": "var(yellow1)",
+            "font_style": "italic"
         },
         {
             "scope": "punctuation.definition.annotation | punctuation.definition.variable",
