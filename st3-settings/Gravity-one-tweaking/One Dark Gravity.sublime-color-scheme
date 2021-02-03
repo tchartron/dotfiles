@@ -13,7 +13,6 @@
         "bluegray3": "hsl(221.1, 13.5%, 27.6%)",
         "bluegray4": "hsl(219, 9.8%, 40%)",
         "bluegray5": "hsl(219, 13.5%, 71%)",
-        "bluegray6": "rgb(42, 45, 62)", // Testing other blue
         "red1": "hsl(5, 48%, 51%)",
         "pink1": "hsl(355.3, 65.2%, 65.1%)",
         "yellow1": "hsl(29.2, 53.8%, 61%)",
@@ -24,15 +23,13 @@
         "green2": "hsl(94.9, 38.1%, 62%)",
         "blue1": "hsl(220.2, 100%, 66.1%)",
         "blue2": "hsl(207, 81.6%, 65.9%)",
-        "blue3": "rgb(153,238,255)",
-        "purple1": "hsl(286.3, 59.8%, 66.9%)",
-        "blond": "rgb(255,255,157)"
+        "purple1": "hsl(286.3, 59.8%, 66.9%)"
     },
     "globals":
     {
         "foreground": "var(bluegray5)",
         "background": "var(bluegray1)",
-        "caret": "var(blue1)",
+        "caret": "var(blue2)",
         "invisibles": "color(var(white1) alpha(0.35))",
         "line_highlight": "var(bluegray2)",
         "selection": "var(bluegray3)",
@@ -46,10 +43,11 @@
         "bracket_contents_options": "underline",
         "bracket_contents_foreground": "color(var(white1) alpha(0.65))",
         "gutter_foreground": "color(var(white1) alpha(0.3))",
-        "tags_options": "stippled_underline"
+        "tags_options": "underline"
     },
     "rules":
     [
+        // For scopes definitions see : https://www.sublimetext.com/docs/3/scope_naming.html#variable
         {
             "scope": "comment",
             "foreground": "var(bluegray4)",
@@ -57,16 +55,22 @@
         },
         {
             "scope": "string",
-            "foreground": "var(blond)",
-            "font_style": "italic"
+            "foreground": "var(green2)"
         },
+        // Other scopes
+        // string.quoted.single
+        // string.quoted.double
+        // string.quoted.triple
+        //string.unquoted
+        //string.regexp
         {
             "scope": "constant.numeric",
             "foreground": "var(yellow1)"
         },
         {
             "scope": "constant.language",
-            "foreground": "var(purple1)"
+            "foreground": "var(red1)",
+            "font_style": "italic"
         },
         {
             "scope": "constant.character, constant.other",
@@ -74,11 +78,11 @@
         },
         {
             "scope": "variable",
-            "foreground": "var(blue3)"
+            "foreground": "var(blue2)"
         },
         {
             "scope": "keyword.operator",
-            "foreground": "var(purple1)"
+            "foreground": "var(yellow2)"
         },
         {
             // Sections of code delineated by curly braces
@@ -101,35 +105,76 @@
             "scope": "punctuation.accessor",
             "foreground": "var(gray4)"
         },
-        {
+        { // use / namespace / ...
             "scope": "keyword",
-            "foreground": "var(yellow1)"
+            "foreground": "var(yellow2)"
         },
         {
             // Control keywords examples include if, try, end and while. Some
             // syntaxes prefer to mark if and else with the conditional variant.
             // The import variant is often used in appropriate situations.
             "scope": "keyword.control",
-            "foreground": "var(purple1)",
+            "foreground": "var(yellow2)",
             "font_style": "italic"
         },
         {
             "scope": "punctuation.definition.annotation | punctuation.definition.variable",
-            "foreground": "var(blue3)"
+            "foreground": "var(blue2)"
         },
         {
             "scope": "variable.other.dollar.only.js",
             "foreground": "var(blue2)"
         },
-        {
+        // { // php dollars
+        //     "scope": "punctuation.definition.variable",
+        //     "foreground": "var(blue2)"
+        // },
+        { // eg : public / private / extends, ...
             "scope": "storage",
-            "foreground": "var(blue3)"
+            "foreground": "var(blue1)",
+            "font_style": "italic"
         },
-        {
+        { // int, bool and char
             "scope": "storage.type",
             "foreground": "var(purple1)",
             "font_style": "italic"
         },
+        { // static, inline, const, public and private
+            "scope": "storage.modifier",
+            "foreground": "var(blue1)",
+            "font_style": "italic"
+        },
+        { // func, function and def
+            "scope": "storage.type.function",
+            "foreground": "var(purple1)",
+            "font_style": "italic"
+        },
+        { // func, function and def
+            "scope": "keyword.declaration.function",
+            "foreground": "var(purple1)",
+            "font_style": "italic"
+        },
+        { // class
+            "scope": "storage.type.class",
+            "foreground": "var(yellow2)",
+            "font_style": "italic"
+        },
+        // Other scopes :
+        // keyword.declaration.class
+        //storage.type.struct
+        //keyword.declaration.struct
+        //storage.type.enum
+        //keyword.declaration.enum
+        // storage.type.union
+        // keyword.declaration.union
+        // storage.type.trait
+        // keyword.declaration.trait
+        // storage.type.interface
+        // keyword.declaration.interface
+        // storage.type.impl
+        // keyword.declaration.impl
+        // storage.type
+        // keyword.declaration.type
         {
             "scope": "entity.name - (entity.name.filename | entity.name.section | entity.name.tag | entity.name.label)",
             "foreground": "var(blue2)"
@@ -141,12 +186,12 @@
         },
         {
             "scope": "variable.parameter - (source.c | source.c++ | source.objc | source.objc++)",
-            "foreground": "var(blue3)",
+            "foreground": "var(blue2)",
             "font_style": "italic"
         },
-        {
+        { // this, self, super
             "scope": "variable.language",
-            "foreground": "var(orange1)",
+            "foreground": "var(red1)",
             "font_style": "italic"
         },
         {
