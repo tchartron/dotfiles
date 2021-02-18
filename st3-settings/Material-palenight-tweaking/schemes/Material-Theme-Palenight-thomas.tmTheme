@@ -156,9 +156,11 @@ a {
             <dict>
                 <key>foreground</key>
                 <string>#C792EA</string>
+                <key>fontStyle</key>
+                <string>italic</string>
             </dict>
         </dict>
-        <dict>
+        <!-- <dict>
             <key>name</key>
             <string>Keyword, Storage</string>
             <key>scope</key>
@@ -168,7 +170,7 @@ a {
                 <key>fontStyle</key>
                 <string>italic</string>
             </dict>
-        </dict>
+        </dict> -->
         <dict>
             <key>name</key>
             <string>Operator, Misc</string>
