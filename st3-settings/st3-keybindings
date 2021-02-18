@@ -1,0 +1,23 @@
+[
+    {
+        "keys": ["super+ctrl+i"], "command": "reindent"
+    },
+    {
+        "keys": ["z", "z"],
+        "command": "exit_insert_mode",
+        "context":
+        [
+            { "key": "setting.command_mode", "operand": false },
+            { "key": "setting.is_widget", "operand": false }
+        ]
+    },
+    {
+        "keys": ["i"],
+        "command": "enter_insert_mode",
+        "context":
+        [
+            {"key": "setting.command_mode"},
+            { "key": "selection_empty", "operator": "equal", "operand": false, "match_all": false }
+        ]
+    }
+]
