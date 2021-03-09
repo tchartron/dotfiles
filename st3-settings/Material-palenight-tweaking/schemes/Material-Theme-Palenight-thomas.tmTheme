@@ -24,7 +24,7 @@
                 <key>findHighlight</key>
                 <string>#F8E71C</string>
                 <key>foreground</key>
-                <string>#49fd00</string>
+                <string>#F0E68C</string>
                 <key>guide</key>
                 <string>#4E557980</string>
                 <key>gutterForeground</key>
@@ -36,7 +36,7 @@
                 <key>popupCss</key>
                 <string>html {
   background-color: #011528;
-  color: #49fd00;
+  color: #F0E68C;
   padding: 16px;
 }
 a {
@@ -47,7 +47,7 @@ a {
   color: #FF5370;
 }
 .success, .inserted {
-  color: #C3E88D;
+  color: #FAFAD2;
 }
 .warning, .modified {
   color: #FFCB6B;
@@ -94,7 +94,7 @@ a {
             <key>settings</key>
             <dict>
                 <key>foreground</key>
-                <string>#49fd00</string>
+                <string>#F0E68C</string>
             </dict>
         </dict>
         <dict>
@@ -129,7 +129,7 @@ a {
             <key>settings</key>
             <dict>
                 <key>background</key>
-                <string>#C3E88D</string>
+                <string>#FAFAD2</string>
                 <key>foreground</key>
                 <string>#FFFFFF</string>
             </dict>
@@ -247,9 +247,9 @@ a {
             <key>settings</key>
             <dict>
                 <key>fontStyle</key>
-                <string>normal</string>
+                <string>italic</string>
                 <key>foreground</key>
-                <string>#C3E88D</string>
+                <string>#FAFAD2</string>
             </dict>
         </dict>
         <dict>
@@ -374,7 +374,7 @@ a {
             <key>settings</key>
             <dict>
                 <key>foreground</key>
-                <string>#C3E88D</string>
+                <string>#FAFAD2</string>
             </dict>
         </dict>
         <dict>
@@ -451,7 +451,7 @@ a {
             <key>settings</key>
             <dict>
                 <key>foreground</key>
-                <string>#C3E88D</string>
+                <string>#FAFAD2</string>
             </dict>
         </dict>
         <dict>
@@ -488,7 +488,7 @@ a {
             <key>settings</key>
             <dict>
                 <key>foreground</key>
-                <string>#C3E88D</string>
+                <string>#FAFAD2</string>
             </dict>
         </dict>
         <dict>
@@ -587,7 +587,7 @@ a {
             <key>settings</key>
             <dict>
                 <key>foreground</key>
-                <string>#49fd00</string>
+                <string>#F0E68C</string>
             </dict>
         </dict>
         <dict>
@@ -631,7 +631,7 @@ a {
             <key>settings</key>
             <dict>
                 <key>foreground</key>
-                <string>#C3E88D</string>
+                <string>#FAFAD2</string>
             </dict>
         </dict>
         <dict>
@@ -797,7 +797,7 @@ a {
             <key>settings</key>
             <dict>
                 <key>foreground</key>
-                <string>#49fd00</string>
+                <string>#F0E68C</string>
             </dict>
         </dict>
         <dict>
@@ -860,7 +860,7 @@ a {
                 <key>background</key>
                 <string></string>
                 <key>foreground</key>
-                <string>#49fd00</string>
+                <string>#F0E68C</string>
             </dict>
         </dict>
         <dict>
@@ -884,7 +884,7 @@ a {
             <key>settings</key>
             <dict>
                 <key>background</key>
-                <string>#C3E88D</string>
+                <string>#FAFAD2</string>
                 <key>foreground</key>
                 <string>#FFFFFF</string>
             </dict>
@@ -989,7 +989,7 @@ a {
             <key>settings</key>
             <dict>
                 <key>foreground</key>
-                <string>#C3E88D</string>
+                <string>#FAFAD2</string>
             </dict>
         </dict>
         <dict>
