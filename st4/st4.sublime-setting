@@ -1,0 +1,42 @@
+{
+    "always_show_minimap_viewport": true,
+    "auto_complete_when_likely": true,
+    "block_carret": true,
+    "bold_folder_labels": true,
+    "caret_style": "phase",
+    "color_scheme": "Packages/Material Theme/schemes/Material-Theme-Palenight-thomas.tmTheme",
+    "draw_white_space": "all",
+    "draw_minimap_border": true,
+    "ensure_newline_at_eof_on_save": true,
+    "fade_fold_buttons": false,
+    "font_face": "Operator Mono Medium",
+    "font_options":
+    [
+        "gray_antialias"
+    ],
+    "font_size": 12,
+    "highlight_line": true,
+    "highlight_modified_tabs": true,
+    "ignored_packages":
+    [
+    ],
+    "indent_guide_options":
+    [
+        "draw_normal",
+        "draw_active"
+    ],
+    "line_padding_bottom": 10,
+    "line_padding_top": 10,
+    "overlay_scroll_bars": "enabled",
+    "relative_line_numbers": true,
+    "scroll_past_end": 0.2,
+    "show_encoding": true,
+    "show_full_path": true,
+    "show_line_endings": true,
+    "tab_size": 4,
+    "theme": "Material-Theme-Palenight-thomas.sublime-theme",
+    "translate_tabs_to_spaces": true,
+    "trim_trailing_white_space_on_save": true,
+    "trim_only_modified_white_space": true,
+    "vintage_start_in_command_mode": true,
+}
