@@ -1,0 +1,45 @@
+// Documentation at https://www.sublimetext.com/docs/color_schemes.html
+{
+    "variables":
+    {
+
+    },
+    "globals":
+    {
+    },
+    "rules":
+    [
+        {
+            "scope": "constant,entity.name.constant,variable.other.constant,variable.other.object,variable.language,entity",
+            "foreground": "#ff7b72",
+            "font_style": "italic"
+        },
+        {
+            "scope": "entity.name,variable.parameter.function,variable.function,variable.parameter,variable.other.readwrite,meta.export.default,meta.definition.variable",
+            "foreground": "#d2a8ff",
+            "font_style": "italic"
+        },
+        {
+            "scope": "entity.name.trait,entity.name.interface,entity.name.impl",
+            "foreground": "yellow",
+            "font_style": "italic"
+        },
+        {
+            "scope": "support.function,meta.function,punctuation.definition.variable",
+            "foreground": "cyan"
+        },
+        {
+            "scope": "string.quoted.single,string.quoted.double,string.quoted.triple",
+            "foreground": "cyan",
+            "font_style": "italic"
+        },
+        {
+            "scope": "support.other.namespace,support.class,variable.annotation,entity.name.constant,entity.name.class,entity.other.inherited-class,entity.name.namespace,meta.namespace,meta.annotation,meta.path,meta.function-call",
+            "foreground": "#ffa657"
+        },
+        {
+            "scope": "punctuation.section",
+            "foreground": "#c9d1d9"
+        },
+    ]
+}
