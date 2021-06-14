@@ -20,7 +20,7 @@
             "font_style": "italic"
         },
         {
-            "scope": "entity.name.trait,entity.name.interface,entity.name.impl",
+            "scope": "",
             "foreground": "yellow",
             "font_style": "italic"
         },
@@ -34,12 +34,16 @@
             "font_style": "italic"
         },
         {
-            "scope": "support.other.namespace,support.class,variable.annotation,entity.name.constant,entity.name.class,entity.other.inherited-class,entity.name.namespace,meta.namespace,meta.annotation,meta.path,meta.function-call",
+            "scope": "support.other.namespace,support.class,variable.annotation,entity.name.constant,entity.name.class,entity.other.inherited-class,entity.name.namespace,meta.namespace,meta.annotation,meta.path,meta.function-call,entity.name.trait,entity.name.interface,entity.name.impl",
             "foreground": "#ffa657"
         },
         {
             "scope": "punctuation.section",
             "foreground": "#c9d1d9"
+        },
+        {
+            "scope": "storage.modifier,storage.type,keyword.declaration",
+            "font_style": "italic"
         },
     ]
 }
