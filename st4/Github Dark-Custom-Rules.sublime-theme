@@ -1,0 +1,24 @@
+// Documentation at https://www.sublimetext.com/docs/color_schemes.html
+{
+    "variables":
+    {
+        "autoCompleteForeground": "#c9d1d9",
+        "autoCompleteSelectedForeground": "#00ff00",
+        "autoCompleteSelectedBackground": "#2a2c33",
+        "autoCompleteMatchForeground": "#388bfd",
+        "autoCompleteSelectedMatchForeground": "#388bfd",
+        "panelRowForeground": "#c9d1d9",
+        "panelRowSelectedForeground": "#00ff00",
+        "panelRowSelectedBackground": "#2a2c33",
+        "panelRowMatchForeground": "#388bfd",
+        "panelRowSelectedMatchForeground": "#388bfd",
+        "treeActiveSelectionBackground": "#21262d",
+    },
+    "globals":
+    {
+    },
+    "rules":
+    [
+
+    ]
+}
