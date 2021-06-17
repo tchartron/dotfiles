@@ -20,11 +20,6 @@
             "font_style": "italic"
         },
         {
-            "scope": "",
-            "foreground": "yellow",
-            "font_style": "italic"
-        },
-        {
             "scope": "support.function,meta.function,punctuation.definition.variable",
             "foreground": "cyan"
         },
