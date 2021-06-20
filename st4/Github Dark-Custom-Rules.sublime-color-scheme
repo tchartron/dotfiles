@@ -37,8 +37,8 @@
             "foreground": "#c9d1d9"
         },
         {
-            "scope": "storage.modifier,storage.type,keyword.declaration",
+            "scope": "storage.modifier,storage.type,keyword.declaration,meta.funtion,keyword.other,keyword.control",
             "font_style": "italic"
-        },
+        }
     ]
 }
