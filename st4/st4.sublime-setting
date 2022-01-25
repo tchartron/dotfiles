@@ -36,7 +36,7 @@
 	"show_line_endings": true,
 	"show_tab_close_buttons_on_left": true,
 	"tab_size": 4,
-	"theme": "GitHub Dark.sublime-theme",
+	"theme": "ayu-dark.sublime-theme",
 	"translate_tabs_to_spaces": true,
 	"trim_trailing_white_space_on_save": true,
 	"trim_only_modified_white_space": true,
