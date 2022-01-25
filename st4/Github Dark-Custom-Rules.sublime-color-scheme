@@ -2,7 +2,7 @@
 {
     "variables":
     {
-
+        "background": "#0F141D"
     },
     "globals":
     {
@@ -24,8 +24,8 @@
             "foreground": "cyan"
         },
         {
-            "scope": "string.quoted.single,string.quoted.double,string.quoted.triple",
-            "foreground": "cyan",
+            "scope": "string.quoted",
+            "foreground": "#FFFF99",
             "font_style": "italic"
         },
         {
