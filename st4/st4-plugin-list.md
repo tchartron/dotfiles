@@ -1,0 +1,36 @@
+## Plugin liste for Sublime Text 4
+
+- AdvancedNewFile
+- Auto close HTML tags
+- ayu
+- Blade snippets
+- Compare side-by-side
+- DockBlockr
+- Docker file syntaxe highlighting
+- Dotenv
+- Emmet
+- Github Theme
+- Golang
+- GoToWindow
+- Laravel blade autocomplete
+- Laravel blade highlighter
+- Laravel blade spacer
+- LSP
+- LSP Dockerfile
+- LSP Html
+- LSP Intelephense
+- LSP Tailwindcss
+- LSP vue
+- Material Theme
+- nginx
+- Package Control
+- PHP getters and setters
+- Pretty Json
+- PyV8
+- Rust Enhanced
+- Sass
+- Theme Gravity
+- TOML
+- Varnish VCL
+- View In Browser
+- Vue Syntax Highlight
