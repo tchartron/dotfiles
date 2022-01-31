@@ -21,6 +21,7 @@
 - LSP Intelephense
 - LSP Tailwindcss
 - LSP vue
+- LSP css
 - Material Theme
 - nginx
 - Package Control
