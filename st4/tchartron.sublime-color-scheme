@@ -59,7 +59,7 @@
         "highlight": "cyan",
         "guide": "#21262d",
         "stack_guide": "#161b22",
-        "active_guide": "yellow",
+        "active_guide": "cyan",
         "line_diff_width": "4",
         "scroll_highlight": "#a707",
         "scroll_selected_highlight": "#b808"
