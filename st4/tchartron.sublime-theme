@@ -887,7 +887,7 @@
             25
         ],
         "layer2.opacity": 1,
-        "layer2.tint": "#141821",
+        "layer2.tint": "#001427",
         "content_margin": [
             10,
             35,
@@ -901,7 +901,7 @@
             13,
             7
         ],
-        "layer0.tint": "#141821",
+        "layer0.tint": "#001427",
         "layer0.opacity": 1
     },
     {
@@ -915,7 +915,7 @@
             13,
             7
         ],
-        "layer0.tint": "#141821",
+        "layer0.tint": "#001427",
         "layer0.opacity": 1
     },
     {
@@ -1110,7 +1110,7 @@
             4
         ],
         "layer0.opacity": 1,
-        "layer0.tint": "#141821",
+        "layer0.tint": "#001427",
         "content_margin": [
             0,
             4
@@ -1849,7 +1849,7 @@
             10,
             8
         ],
-        "layer0.tint": "#141821",
+        "layer0.tint": "#001427",
         "layer1.texture": "ayu/assets/input-border.png",
         "layer1.opacity": 1,
         "layer1.inner_margin": [
