@@ -28,8 +28,6 @@
 	"hide_tab_scrolling_buttons": true,
 	"ignored_packages":
 	[
-		"LSP-intelephense",
-		"Sass",
 	],
 	"indent_guide_options":
 	[
