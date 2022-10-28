@@ -5,7 +5,7 @@
         "accent": "#F78166",
         "cursor": "#58a6ff",
         "foreground": "#c9d1d9",
-        "background": "#001026",
+        "background": "#00112B",
         "comments": "#8b949e",
         "deprecated": "#f0f6fc",
         "invalid": "#f0f6fc",
@@ -150,7 +150,7 @@
             "scope": "carriage-return",
             "font_style": "italic underline",
             "background": "#ff7b72",
-            "foreground": "#001026"
+            "foreground": "#00112B"
         },
         {
             "scope": "message.error",
