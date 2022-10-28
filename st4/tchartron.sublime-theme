@@ -4,7 +4,7 @@
         "settings": [
             "!ui_native_titlebar"
         ],
-        "bg": "#001026",
+        "bg": "#00112B",
         "fg": "#bfbdb6"
     },
     {
@@ -24,7 +24,7 @@
             0
         ],
         "layer0.opacity": 1,
-        "layer0.tint": "#001026"
+        "layer0.tint": "#00112B"
     },
     {
         "class": "sidebar_container",
@@ -476,7 +476,7 @@
         "tab_overlap": 0,
         "tab_height": 38,
         "tab_width": 100,
-        "layer0.tint": "#001026",
+        "layer0.tint": "#00112B",
         "layer0.opacity": 1,
         "content_margin": [
             10,
@@ -611,7 +611,7 @@
             "speed": 1,
             "interpolation": "smoothstep"
         },
-        "layer1.tint": "#001026",
+        "layer1.tint": "#00112B",
         "layer2.opacity": 1
     },
     {
@@ -887,7 +887,7 @@
             25
         ],
         "layer2.opacity": 1,
-        "layer2.tint": "#001026",
+        "layer2.tint": "#00112B",
         "content_margin": [
             10,
             35,
@@ -901,7 +901,7 @@
             13,
             7
         ],
-        "layer0.tint": "#001026",
+        "layer0.tint": "#00112B",
         "layer0.opacity": 1
     },
     {
@@ -915,7 +915,7 @@
             13,
             7
         ],
-        "layer0.tint": "#001026",
+        "layer0.tint": "#00112B",
         "layer0.opacity": 1
     },
     {
@@ -1110,7 +1110,7 @@
             4
         ],
         "layer0.opacity": 1,
-        "layer0.tint": "#001026",
+        "layer0.tint": "#00112B",
         "content_margin": [
             0,
             4
@@ -1527,7 +1527,7 @@
     },
     {
         "class": "panel_control",
-        "layer0.tint": "#001026",
+        "layer0.tint": "#00112B",
         "layer0.opacity": 1,
         "content_margin": [
             0,
@@ -1573,7 +1573,7 @@
     {
         "class": "status_bar",
         "layer0.texture": "",
-        "layer0.tint": "#001026",
+        "layer0.tint": "#00112B",
         "layer0.opacity": 1,
         "layer1.texture": "ayu/assets/separator-top.png",
         "layer1.tint": "#1b1f29",
@@ -1849,7 +1849,7 @@
             10,
             8
         ],
-        "layer0.tint": "#001026",
+        "layer0.tint": "#00112B",
         "layer1.texture": "ayu/assets/input-border.png",
         "layer1.opacity": 1,
         "layer1.inner_margin": [
