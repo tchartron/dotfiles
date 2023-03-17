@@ -1,0 +1,21 @@
+// Place your key bindings in this file to override the defaultsauto[]
+[
+    {
+        "key": "cmd+k u",
+        "command": "editor.action.transformToUppercase"
+    },
+    {
+        "key": "cmd+k l",
+        "command": "editor.action.transformToLowercase"
+    },
+    {
+        "key": "shift+cmd+j",
+        "command": "editor.action.joinLines",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "-editor.action.joinLines",
+        "when": "editorTextFocus && !editorReadonly"
+    }
+]
