@@ -18,6 +18,6 @@ Open Remote SSH
 PHP Intelephense  
 Prettier code formatter  
 Tailwind CSS IntelliSense  
-Vim  
+Neovim  
 Vue Language Features  
 YAML  
