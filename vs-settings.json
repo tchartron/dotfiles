@@ -1,10 +1,8 @@
 {
-    "workbench.colorTheme": "Ayu Dark",
     "editor.renderWhitespace": "all",
     "editor.wordWrap": "on",
-    "editor.fontFamily": "Cartograph CF, Ellograph CF, Operator Mono, Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontFamily": "Operator Mono Book, Cartograph CF, Ellograph CF, Menlo, Monaco, 'Courier New', monospace",
     "editor.lineHeight": 2,
-    "editor.fontSize": 11,
     "editor.minimap.maxColumn": 90,
     "editor.minimap.showSlider": "always",
     "workbench.iconTheme": "material-icon-theme",
@@ -22,5 +20,14 @@
         80,
 		120
     ],
-    "workbench.statusBar.visible": false
+    "redhat.telemetry.enabled": false,
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "window.title": "${activeEditorLong}${separator}${rootName}${separator}${profileName}",
+    "editor.fontSize": 11,
+    "editor.fontWeight": "normal",
+    "workbench.colorTheme": "Night Owl Light",
+    "terminal.integrated.fontWeight": "normal",
+    "files.insertFinalNewline": true
 }
