@@ -4,6 +4,7 @@ Ayu
 Bash IDE  
 Caddyfile support  
 Composer  
+Coldark  
 Docker  
 DotENV  
 Error Lens  
@@ -13,6 +14,8 @@ Import Cost
 Inertia.js  
 Laravel Extra Intellisense  
 Material Icon Theme  
+MinifyAll
+Night Owl
 One Dark Pro  
 Open Remote SSH  
 PHP Intelephense  
