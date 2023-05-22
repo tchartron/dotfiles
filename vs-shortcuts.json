@@ -17,5 +17,19 @@
         "key": "ctrl+j",
         "command": "-editor.action.joinLines",
         "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "cmd+m",
+        "command": "editor.emmet.action.matchTag"
+    },
+    {
+        "key": "shift+cmd+m",
+        "command": "editor.action.jumpToBracket",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+shift+alt+cmd+l",
+        "command": "-editor.action.jumpToBracket",
+        "when": "editorTextFocus"
     }
 ]
