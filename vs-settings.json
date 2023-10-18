@@ -18,7 +18,7 @@
     "editor.scrollbar.verticalScrollbarSize": 4,
     "editor.rulers": [
         80,
-		120
+        120
     ],
     "redhat.telemetry.enabled": false,
     "[json]": {
@@ -27,7 +27,29 @@
     "window.title": "${activeEditorLong}${separator}${rootName}${separator}${profileName}",
     "editor.fontSize": 11,
     "editor.fontWeight": "normal",
-    "workbench.colorTheme": "Night Owl Light",
+    "workbench.colorTheme": "sprayed",
     "terminal.integrated.fontWeight": "normal",
-    "files.insertFinalNewline": true
+    "files.insertFinalNewline": true,
+    "[yaml]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    "indentRainbow.colors": [
+        "rgba(130,130,130,0.1)",
+        "rgba(130,130,130,0.2)",
+        "rgba(130,130,130,0.3)",
+        "rgba(130,130,130,0.4)",
+        "rgba(130,130,130,0.5)",
+        "rgba(130,130,130,0.6)",
+        "rgba(130,130,130,0.7)",
+        "rgba(130,130,130,0.8)",
+    ],
+    "indentRainbow.errorColor": "rgba(255, 0, 0, 0.75)",
+    "indentRainbow.tabmixColor": "rgba(255, 0, 0, 0.75)",
+    "indentRainbow.updateDelay": 1000,
+    "indentRainbow.ignoreLinePatterns": [
+        "/[ \t]* [*]/g",
+    ],
 }
