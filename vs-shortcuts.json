@@ -33,7 +33,7 @@
         "command": "editor.emmet.action.matchTag"
     },
     {
-        "key": "shift+alt+l",
+        "key": "shift+alt+m",
         "command": "editor.action.insertCursorAtEndOfEachLineSelected",
         "when": "editorTextFocus"
     }
