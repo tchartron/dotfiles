@@ -1,40 +1,21 @@
-// Place your key bindings in this file to override the defaultsauto[]
+// Place your key bindings in this file to override the defaults
 [
-    {
-        "key": "cmd+k u",
-        "command": "editor.action.transformToUppercase"
-    },
     {
         "key": "cmd+k l",
         "command": "editor.action.transformToLowercase"
     },
     {
-        "key": "shift+cmd+j",
-        "command": "editor.action.joinLines",
-        "when": "editorTextFocus && !editorReadonly"
+        "key": "cmd+k u",
+        "command": "editor.action.transformToUppercase"
     },
     {
-        "key": "ctrl+j",
-        "command": "-editor.action.joinLines",
-        "when": "editorTextFocus && !editorReadonly"
-    },
-    {
-        "key": "shift+cmd+m",
-        "command": "editor.action.jumpToBracket",
-        "when": "editorTextFocus"
-    },
-    {
-        "key": "ctrl+shift+alt+cmd+l",
-        "command": "-editor.action.jumpToBracket",
-        "when": "editorTextFocus"
-    },
-    {
-        "key": "cmd+m",
-        "command": "editor.emmet.action.matchTag"
-    },
-    {
-        "key": "shift+alt+m",
+        "key": "ctrl+alt+m",
         "command": "editor.action.insertCursorAtEndOfEachLineSelected",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "shift+alt+i",
+        "command": "-editor.action.insertCursorAtEndOfEachLineSelected",
         "when": "editorTextFocus"
     }
 ]
