@@ -9,7 +9,7 @@
         "command": "editor.action.transformToUppercase"
     },
     {
-        "key": "ctrl+alt+m",
+        "key": "shift+alt+l",
         "command": "editor.action.insertCursorAtEndOfEachLineSelected",
         "when": "editorTextFocus"
     },
