@@ -1,26 +1,26 @@
 `code --list-extensions > vscode-extensions.list`
 
-asvetliakov.vscode-neovim
-bmewburn.vscode-intelephense-client
-bradlc.vscode-tailwindcss
-bruno-api-client.bruno
-davidanson.vscode-markdownlint
-eamodio.gitlens
-enkia.tokyo-night
-esbenp.prettier-vscode
-hashicorp.terraform
-hueflake.moonlight
-mads-hartmann.bash-ide-vscode
-ms-azuretools.vscode-docker
-ms-kubernetes-tools.vscode-kubernetes-tools
-ms-vscode.makefile-tools
-ms-vscode.vscode-typescript-next
-nuxtr.nuxtr-vscode
-oderwat.indent-rainbow
-redhat.vscode-yaml
-sdras.night-owl
-thedavej.night-owl-black
-usernamehw.errorlens
-vue.volar
-wix.vscode-import-cost
-zamerick.vscode-caddyfile-syntax
+* asvetliakov.vscode-neovim
+* bmewburn.vscode-intelephense-client
+* bradlc.vscode-tailwindcss
+* bruno-api-client.bruno
+* davidanson.vscode-markdownlint
+* eamodio.gitlens
+* enkia.tokyo-night
+* esbenp.prettier-vscode
+* hashicorp.terraform
+* hueflake.moonlight
+* mads-hartmann.bash-ide-vscode
+* ms-azuretools.vscode-docker
+* ms-kubernetes-tools.vscode-kubernetes-tools
+* ms-vscode.makefile-tools
+* ms-vscode.vscode-typescript-next
+* nuxtr.nuxtr-vscode
+* oderwat.indent-rainbow
+* redhat.vscode-yaml
+* sdras.night-owl
+* thedavej.night-owl-black
+* usernamehw.errorlens
+* vue.volar
+* wix.vscode-import-cost
+* zamerick.vscode-caddyfile-syntax
