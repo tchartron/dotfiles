@@ -40,8 +40,10 @@ zstyle ':prezto:load' pmodule \
   'completion' \
   'history-substring-search' \
   'prompt' \
+  'autosuggestions' \
   'git' \
-  'autosuggestions'
+  'docker' \
+  'syntax-highlighting'
 
 #
 # Autosuggestions
@@ -62,14 +64,17 @@ zstyle ':prezto:load' pmodule \
 # Editor
 #
 
+# Set the characters that are considered to be part of a word.
+# zstyle ':prezto:module:editor' wordchars '*?_-.[]~&;!#$%^(){}<>'
+
 # Set the key mapping style to 'emacs' or 'vi'.
 zstyle ':prezto:module:editor' key-bindings 'vi'
 
 # Auto convert .... to ../..
-# zstyle ':prezto:module:editor' dot-expansion 'yes'
+zstyle ':prezto:module:editor' dot-expansion 'yes'
 
 # Allow the zsh prompt context to be shown.
-#zstyle ':prezto:module:editor' ps-context 'yes'
+zstyle ':prezto:module:editor' ps-context 'yes'
 
 #
 # Git
@@ -111,6 +116,18 @@ zstyle ':prezto:module:editor' key-bindings 'vi'
 # Set the search globbing flags.
 # zstyle ':prezto:module:history-substring-search' globbing-flags ''
 
+# Enable search case-sensitivity.
+# zstyle ':prezto:module:history-substring-search' case-sensitive 'yes'
+
+# Enable search for fuzzy matches.
+# zstyle ':prezto:module:history-substring-search' fuzzy 'yes'
+
+# Enable search uniqueness.
+# zstyle ':prezto:module:history-substring-search' unique 'yes'
+
+# Enable prefixed search.
+# zstyle ':prezto:module:history-substring-search' prefixed 'yes'
+
 #
 # macOS
 #
@@ -132,7 +149,7 @@ zstyle ':prezto:module:editor' key-bindings 'vi'
 # Set the prompt theme to load.
 # Setting it to 'random' loads a random theme.
 # Auto set to 'off' on dumb terminals.
-zstyle ':prezto:module:prompt' theme 'powerlevel10k'
+zstyle ':prezto:module:prompt' theme 'cloud' "👻"
 
 # Set the working directory prompt display length.
 # By default, it is set to 'short'. Set it to 'long' (without '~' expansion)
@@ -141,7 +158,7 @@ zstyle ':prezto:module:prompt' theme 'powerlevel10k'
 
 # Set the prompt to display the return code along with an indicator for non-zero
 # return codes. This is not supported by all prompts.
-# zstyle ':prezto:module:prompt' show-return-val 'yes'
+zstyle ':prezto:module:prompt' show-return-val 'yes'
 
 #
 # Python
@@ -206,7 +223,7 @@ zstyle ':prezto:module:prompt' theme 'powerlevel10k'
 #
 
 # Auto set the tab and window titles.
-# zstyle ':prezto:module:terminal' auto-title 'yes'
+zstyle ':prezto:module:terminal' auto-title 'yes'
 
 # Set the window title format.
 # zstyle ':prezto:module:terminal:window-title' format '%n@%m: %s'
