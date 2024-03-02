@@ -12,10 +12,5 @@
         "key": "shift+alt+l",
         "command": "editor.action.insertCursorAtEndOfEachLineSelected",
         "when": "editorTextFocus"
-    },
-    {
-        "key": "shift+alt+i",
-        "command": "-editor.action.insertCursorAtEndOfEachLineSelected",
-        "when": "editorTextFocus"
     }
 ]
