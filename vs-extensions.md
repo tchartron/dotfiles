@@ -17,9 +17,11 @@
 * ms-vscode.vscode-typescript-next
 * nuxtr.nuxtr-vscode
 * oderwat.indent-rainbow
+* redhat.ansible
 * redhat.vscode-yaml
 * sdras.night-owl
 * thedavej.night-owl-black
+* timonwong.shellcheck
 * usernamehw.errorlens
 * vue.volar
 * wix.vscode-import-cost
