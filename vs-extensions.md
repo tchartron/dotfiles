@@ -8,6 +8,7 @@
 * eamodio.gitlens
 * enkia.tokyo-night
 * esbenp.prettier-vscode
+* qcz.text-power-tools
 * hashicorp.terraform
 * hueflake.moonlight
 * mads-hartmann.bash-ide-vscode
