@@ -3,7 +3,6 @@
 * asvetliakov.vscode-neovim
 * bmewburn.vscode-intelephense-client
 * bradlc.vscode-tailwindcss
-* bruno-api-client.bruno
 * davidanson.vscode-markdownlint
 * eamodio.gitlens
 * enkia.tokyo-night
