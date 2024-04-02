@@ -30,7 +30,6 @@
         80,
         120
     ],
-    "vim.smartRelativeLine": true,
     "explorer.openEditors.visible": 1,
     "workbench.activityBar.location": "top",
     "workbench.colorTheme": "Tokyo Night Storm",
