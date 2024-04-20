@@ -30,6 +30,7 @@
         80,
         120
     ],
+    "editor.lineNumbers": "relative",
     "explorer.openEditors.visible": 1,
     "workbench.activityBar.location": "top",
     "workbench.colorTheme": "Tokyo Night Storm",
@@ -174,5 +175,9 @@
             }
             ]
         }
-    }
+    },
+    "accessibility.signals.lineHasError": {
+        "sound": "off"
+    },
+    "editor.accessibilitySupport": "off"
 }
