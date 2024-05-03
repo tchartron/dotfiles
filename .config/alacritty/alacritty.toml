@@ -1,0 +1,16 @@
+import = [
+    "~/.config/alacritty/themes/night_owl.toml"
+]
+
+[font]
+size = 12
+
+[font.normal]
+family = "Maple Mono"
+
+[window]
+decorations = "None"
+startup_mode = "Fullscreen"
+
+[mouse]
+hide_when_typing = true
