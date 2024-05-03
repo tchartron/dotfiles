@@ -10,7 +10,12 @@ family = "Maple Mono"
 
 [window]
 decorations = "None"
-startup_mode = "Fullscreen"
+position = { x = 500, y = 1000 }
+dimensions = { columns = 200, lines = 60 }
+startup_mode = "Windowed"
+padding = { x = 3, y = 3 }
+dynamic_padding = true
+opacity = 0.9
 
 [mouse]
 hide_when_typing = true
