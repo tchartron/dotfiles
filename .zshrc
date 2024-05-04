@@ -13,4 +13,7 @@ fi
 # Customize to your needs...
 
 # Aliases
-alias coding="cd ~/Code"
+alias cod="cd ~/Code"
+alias boo="cd ~/Code/web/boootic"
+alias t="tmux"
+alias v="nvim"
