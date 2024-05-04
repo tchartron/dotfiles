@@ -12,7 +12,7 @@ family = "Maple Mono"
 decorations = "None"
 position = { x = 500, y = 1000 }
 dimensions = { columns = 200, lines = 60 }
-startup_mode = "Windowed"
+startup_mode = "SimpleFullscreen"
 padding = { x = 3, y = 3 }
 dynamic_padding = true
 opacity = 0.9
