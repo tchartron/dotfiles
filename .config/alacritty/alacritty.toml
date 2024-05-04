@@ -10,11 +10,11 @@ family = "Maple Mono"
 
 [window]
 decorations = "None"
-position = { x = 500, y = 1000 }
-dimensions = { columns = 200, lines = 60 }
+#position = { x = 500, y = 1000 }
+#dimensions = { columns = 200, lines = 60 }
+padding = { x = 0, y = 40 }
 startup_mode = "SimpleFullscreen"
-padding = { x = 3, y = 3 }
-dynamic_padding = true
+dynamic_padding = false
 opacity = 0.9
 blur = true
 
