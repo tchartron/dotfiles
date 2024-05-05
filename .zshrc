@@ -17,3 +17,7 @@ alias cod="cd ~/Code"
 alias boo="cd ~/Code/web/boootic"
 alias t="tmux"
 alias v="nvim"
+
+# Path Variables
+EDITOR='nvim'
+VISUAL='nvim'
