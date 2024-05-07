@@ -17,6 +17,7 @@ alias cod="cd ~/Code"
 alias boo="cd ~/Code/web/boootic"
 alias t="tmux"
 alias v="nvim"
+alias gltag="git describe --abbrev=0 --tags"
 
 # Path Variables
 EDITOR='nvim'
