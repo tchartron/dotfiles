@@ -22,3 +22,6 @@ alias gltag="git describe --abbrev=0 --tags"
 # Path Variables
 EDITOR='nvim'
 VISUAL='nvim'
+
+# Fzf shell integration
+source <(fzf --zsh)
