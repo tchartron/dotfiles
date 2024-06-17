@@ -18,6 +18,8 @@ alias boo="cd ~/Code/web/boootic"
 alias t="tmux"
 alias v="nvim"
 alias gltag="git describe --abbrev=0 --tags"
+alias lg="lazygit"
+alias ld="lazydocker"
 
 # Path Variables
 EDITOR='nvim'
