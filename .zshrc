@@ -20,6 +20,11 @@ alias v="nvim"
 alias gltag="git describe --abbrev=0 --tags"
 alias lg="lazygit"
 alias ld="lazydocker"
+alias stkup="dkc -f ~/Code/web/adcilio/proxy/compose.yaml up -d && dkc -f ~/Code/web/adcilio/dashboard/compose.yaml up -d && dkc -f ~/Code/web/adcilio/showcase/compose.yaml up -d && dkc -f ~/Code/web/adcilio/api/compose.yaml up -d"
+alias stkdown="dkc -f ~/Code/web/adcilio/proxy/compose.yaml down && dkc -f ~/Code/web/adcilio/dashboard/compose.yaml down && dkc -f ~/Code/web/adcilio/showcase/compose.yaml down && dkc -f ~/Code/web/adcilio/api/compose.yaml down"
+alias proxyup="dkc -f ~/Code/web/adcilio/proxy/compose.yaml up -d"
+alias proxydown="dkc -f ~/Code/web/adcilio/proxy/compose.yaml down"
+alias ads="cd ~/Code/web/adcilio"
 
 # Path Variables
 EDITOR='nvim'
