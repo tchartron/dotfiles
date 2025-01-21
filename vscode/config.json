@@ -4,8 +4,10 @@
     "editor.renderWhitespace": "all",
     "editor.wordWrap": "on",
     "editor.fontFamily": "Maple Mono, Dank Mono, Iosevka Extended, Operator Mono Book, Cartograph CF, Ellograph CF, Menlo, Monaco, 'Courier New', monospace",
+    "editor.lineHeight": 2,
     "editor.minimap.autohide": false,
     "editor.stickyScroll.maxLineCount": 7,
+    "editor.fontSize": 11,
     "editor.fontWeight": "normal",
     "editor.minimap.maxColumn": 90,
     "editor.minimap.showSlider": "always",
@@ -18,8 +20,6 @@
     "editor.cursorBlinking": "smooth",
     "editor.cursorSmoothCaretAnimation": "on",
     "editor.tabCompletion": "on",
-    "editor.tabSize": 4,
-    "editor.detectIndentation": false,
     "editor.quickSuggestions": {
         "strings": true
     },
@@ -180,7 +180,15 @@
         "sound": "off"
     },
     "editor.accessibilitySupport": "off",
-    "editor.lineHeight": 2,
-    "editor.fontSize": 11,
-    "svelte.enable-ts-plugin": true
+    "[pug]": {
+        "editor.detectIndentation" : false,
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2
+    },
+    "[yaml][yml]": {
+        "editor.detectIndentation" : false,
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2
+    },
+    "database-client.autoSync": true
 }
