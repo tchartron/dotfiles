@@ -7,10 +7,11 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+	"icon_theme": "Catppuccin Macchiato",
 	"project_panel": {
 		"dock": "right"
 	},
-	"theme": "Catppuccin Mocha",
+	"theme": "Tokyo Night",
 	"buffer_font_size": 12,
 	"ui_font_size": 14,
 	"buffer_line_height": {
@@ -115,5 +116,70 @@
 		"inactive_opacity": 0.4
 	},
 	"restore_on_startup": "last_session",
-	"base_keymap": "VSCode"
+	"base_keymap": "VSCode",
+	"lsp": {
+		"vtsls": {
+			"settings": {
+				"javascript": {
+					"format_on_save": "off",
+					"inlayHints": {
+						"parameterNames": {
+							"enabled": "all",
+							"suppressWhenArgumentMatchesName": false
+						},
+						"parameterTypes": {
+							"enabled": true
+						},
+						"variableTypes": {
+							"enabled": true,
+							"suppressWhenTypeMatchesName": true
+						},
+						"propertyDeclarationTypes": {
+							"enabled": true
+						},
+						"functionLikeReturnTypes": {
+							"enabled": true
+						},
+						"enumMemberValues": {
+							"enabled": true
+						}
+					}
+				},
+				"typescript": {
+					"format_on_save": "off",
+					"inlayHints": {
+						"parameterNames": {
+							"enabled": "all",
+							"suppressWhenArgumentMatchesName": false
+						},
+						"parameterTypes": {
+							"enabled": true
+						},
+						"variableTypes": {
+							"enabled": true,
+							"suppressWhenTypeMatchesName": true
+						},
+						"propertyDeclarationTypes": {
+							"enabled": true
+						},
+						"functionLikeReturnTypes": {
+							"enabled": true
+						},
+						"enumMemberValues": {
+							"enabled": true
+						}
+					}
+				}
+			}
+		}
+	},
+	"languages": {
+		"Vue.js": {
+			// "format_on_save": "off"
+		},
+		"PHP": {
+			// "format_on_save": "off"
+			"language_servers": ["intelephense", "!phpactor", "..."]
+		}
+	}
 }
