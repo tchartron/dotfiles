@@ -1,0 +1,111 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run the `open default settings` command
+// from the command palette or from `Zed` application menu.
+{
+	"project_panel": {
+		"dock": "right"
+	},
+	"theme": "Tokyo Night",
+	"buffer_font_size": 11,
+	"buffer_line_height": {
+		"custom": 1.7
+	},
+	"buffer_font_family": "Maple Mono",
+	"current_line_highlight": "all",
+	"cursor_shape": "bar",
+	"hard_tabs": true,
+	"experimental.theme_overrides": {
+		"syntax": {
+			"comment": {
+				"font_style": "italic"
+			},
+			"comment.doc": {
+				"font_style": "italic"
+			}
+		},
+		"editor.invisible": "#777777"
+	},
+	"inlay_hints": {
+		"enabled": true,
+		"show_type_hints": true,
+		"show_parameter_hints": true,
+		"show_other_hints": true,
+		"show_background": false,
+		"edit_debounce_ms": 700,
+		"scroll_debounce_ms": 50,
+		"toggle_on_modifiers_press": null
+	},
+	"edit_predictions": {
+		"disabled_globs": [
+			"**/.env*",
+			"**/*.pem",
+			"**/*.key",
+			"**/*.cert",
+			"**/*.crt",
+			"**/.dev.vars",
+			"**/secrets.yml"
+		]
+	},
+	"scrollbar": {
+		"show": "auto",
+		"cursors": true,
+		"git_diff": true,
+		"search_results": true,
+		"selected_text": true,
+		"selected_symbol": true,
+		"diagnostics": "all",
+		"axes": {
+			"horizontal": true,
+			"vertical": true
+		}
+	},
+	"git_diff": true,
+	"search_results": true,
+	"diagnostics": {
+		"include_warnings": true,
+		"inline": {
+			"enabled": true,
+			"update_debounce_ms": 150,
+			"padding": 4,
+			"min_column": 0,
+			"max_severity": null
+		}
+	},
+	"enable_language_server": true,
+	"format_on_save": "on",
+	"use_autoclose": true,
+	"tabs": {
+		"close_position": "right",
+		"file_icons": true,
+		"git_status": true,
+		"activate_on_close": "history",
+		"show_close_button": "hover",
+		"show_diagnostics": "all"
+	},
+	"tab_size": 4,
+	"show_whitespaces": "all",
+	"toolbar": {
+		"breadcrumbs": true,
+		"quick_actions": true,
+		"selections_menu": true
+	},
+	"show_nav_history_buttons": false,
+	"hide_mouse": "on_typing_and_movement",
+	"telemetry": {
+		"diagnostics": false,
+		"metrics": false
+	},
+	"vim_mode": true,
+	"active_pane_modifiers": {
+		"magnification": 1.0,
+		"border_size": 0.0,
+		"inactive_opacity": 0.4
+	},
+	"restore_on_startup": "last_session",
+	"base_keymap": "VSCode"
+}
