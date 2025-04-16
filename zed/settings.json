@@ -10,10 +10,11 @@
 	"project_panel": {
 		"dock": "right"
 	},
-	"theme": "Tokyo Night",
-	"buffer_font_size": 11,
+	"theme": "Catppuccin Mocha",
+	"buffer_font_size": 12,
+	"ui_font_size": 14,
 	"buffer_line_height": {
-		"custom": 1.7
+		"custom": 1.4
 	},
 	"buffer_font_family": "Maple Mono",
 	"current_line_highlight": "all",
@@ -26,9 +27,12 @@
 			},
 			"comment.doc": {
 				"font_style": "italic"
+			},
+			"keyword": {
+				"font_style": "italic"
 			}
-		},
-		"editor.invisible": "#777777"
+		}
+		// "editor.invisible": "#777777"
 	},
 	"inlay_hints": {
 		"enabled": true,
@@ -101,6 +105,10 @@
 		"metrics": false
 	},
 	"vim_mode": true,
+	"relative_line_numbers": true,
+	"vim": {
+		"toggle_relative_line_numbers": true
+	},
 	"active_pane_modifiers": {
 		"magnification": 1.0,
 		"border_size": 0.0,
