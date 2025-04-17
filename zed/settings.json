@@ -115,8 +115,8 @@
 	"show_nav_history_buttons": false,
 	"hide_mouse": "on_typing_and_movement",
 	"telemetry": {
-		"diagnostics": false,
-		"metrics": false
+		"diagnostics": true,
+		"metrics": true
 	},
 	"preferred_line_length": 120,
 	"soft_wrap": "preferred_line_length",
