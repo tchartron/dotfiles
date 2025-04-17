@@ -9,8 +9,17 @@
 {
 	"icon_theme": "Catppuccin Macchiato",
 	"project_panel": {
-		"dock": "right"
+		"dock": "right",
+		"indent_size": 14,
+		"auto_fold_dirs": false,
+		"scrollbar": {
+			"show": "never"
+		}
 	},
+	"outline_panel": {
+		"button": false
+	},
+	"cursor_blink": false,
 	"theme": "Tokyo Night",
 	"buffer_font_size": 12,
 	"ui_font_size": 14,
@@ -57,7 +66,7 @@
 		]
 	},
 	"scrollbar": {
-		"show": "auto",
+		"show": "never",
 		"cursors": true,
 		"git_diff": true,
 		"search_results": true,
@@ -93,11 +102,15 @@
 		"show_diagnostics": "all"
 	},
 	"tab_size": 4,
+	"tab_bar": {
+		"show": true,
+		"show_nav_history_buttons": false
+	},
 	"show_whitespaces": "all",
 	"toolbar": {
-		"breadcrumbs": true,
-		"quick_actions": true,
-		"selections_menu": true
+		"breadcrumbs": false,
+		"quick_actions": false,
+		"selections_menu": false
 	},
 	"show_nav_history_buttons": false,
 	"hide_mouse": "on_typing_and_movement",
@@ -105,10 +118,13 @@
 		"diagnostics": false,
 		"metrics": false
 	},
+	"preferred_line_length": 120,
+	"soft_wrap": "preferred_line_length",
 	"vim_mode": true,
 	"relative_line_numbers": true,
 	"vim": {
 		"toggle_relative_line_numbers": true
+		// "vertical_scroll_margin": 20
 	},
 	"active_pane_modifiers": {
 		"magnification": 1.0,
@@ -171,15 +187,25 @@
 					}
 				}
 			}
+		},
+		"intelephense": {
+			"files": {
+				"maxSize": 3000000
+			}
 		}
 	},
 	"languages": {
 		"Vue.js": {
 			// "format_on_save": "off"
+			"soft_wrap": "preferred_line_length"
 		},
 		"PHP": {
-			// "format_on_save": "off"
+			"soft_wrap": "preferred_line_length",
 			"language_servers": ["intelephense", "!phpactor", "..."]
+		},
+		"Markdown": {
+			"soft_wrap": "preferred_line_length",
+			"remove_trailing_whitespace_on_save": false
 		}
 	}
 }
