@@ -118,7 +118,7 @@
 		"diagnostics": true,
 		"metrics": true
 	},
-	"preferred_line_length": 120,
+	"preferred_line_length": 140,
 	"soft_wrap": "preferred_line_length",
 	"vim_mode": true,
 	"relative_line_numbers": true,
