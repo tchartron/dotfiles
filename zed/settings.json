@@ -55,15 +55,7 @@
 		"toggle_on_modifiers_press": null
 	},
 	"edit_predictions": {
-		"disabled_globs": [
-			"**/.env*",
-			"**/*.pem",
-			"**/*.key",
-			"**/*.cert",
-			"**/*.crt",
-			"**/.dev.vars",
-			"**/secrets.yml"
-		]
+		"disabled_globs": ["**/.env*", "**/*.pem", "**/*.key", "**/*.cert", "**/*.crt", "**/.dev.vars", "**/secrets.yml"]
 	},
 	"scrollbar": {
 		"show": "never",
@@ -206,6 +198,9 @@
 		"Markdown": {
 			"soft_wrap": "preferred_line_length",
 			"remove_trailing_whitespace_on_save": false
+		},
+		"YAML": {
+			"tab_size": 2
 		}
 	}
 }
