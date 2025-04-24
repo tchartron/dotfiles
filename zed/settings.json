@@ -29,7 +29,7 @@
 	"buffer_font_family": "Maple Mono",
 	"current_line_highlight": "all",
 	"cursor_shape": "bar",
-	"hard_tabs": true,
+	"hard_tabs": false,
 	"experimental.theme_overrides": {
 		"syntax": {
 			"comment": {
