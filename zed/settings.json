@@ -7,200 +7,200 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-	"icon_theme": "Catppuccin Macchiato",
-	"project_panel": {
-		"dock": "right",
-		"indent_size": 14,
-		"auto_fold_dirs": false,
-		"scrollbar": {
-			"show": "never"
-		}
-	},
-	"outline_panel": {
-		"button": false
-	},
-	"cursor_blink": false,
-	"theme": "Tokyo Night",
-	"buffer_font_size": 12,
-	"ui_font_size": 14,
-	"buffer_line_height": {
-		"custom": 1.4
-	},
-	"buffer_font_family": "Maple Mono",
-	"current_line_highlight": "all",
-	"cursor_shape": "bar",
-	"hard_tabs": false,
-	"experimental.theme_overrides": {
-		"syntax": {
-			"comment": {
-				"font_style": "italic"
-			},
-			"comment.doc": {
-				"font_style": "italic"
-			},
-			"keyword": {
-				"font_style": "italic"
-			}
-		}
-		// "editor.invisible": "#777777"
-	},
-	"inlay_hints": {
-		"enabled": true,
-		"show_type_hints": true,
-		"show_parameter_hints": true,
-		"show_other_hints": true,
-		"show_background": false,
-		"edit_debounce_ms": 700,
-		"scroll_debounce_ms": 50,
-		"toggle_on_modifiers_press": null
-	},
-	"edit_predictions": {
-		"disabled_globs": ["**/.env*", "**/*.pem", "**/*.key", "**/*.cert", "**/*.crt", "**/.dev.vars", "**/secrets.yml"]
-	},
-	"scrollbar": {
-		"show": "never",
-		"cursors": true,
-		"git_diff": true,
-		"search_results": true,
-		"selected_text": true,
-		"selected_symbol": true,
-		"diagnostics": "all",
-		"axes": {
-			"horizontal": true,
-			"vertical": true
-		}
-	},
-	"git_diff": true,
-	"search_results": true,
-	"diagnostics": {
-		"include_warnings": true,
-		"inline": {
-			"enabled": true,
-			"update_debounce_ms": 150,
-			"padding": 4,
-			"min_column": 0,
-			"max_severity": null
-		}
-	},
-	"enable_language_server": true,
-	"format_on_save": "on",
-	"use_autoclose": true,
-	"tabs": {
-		"close_position": "right",
-		"file_icons": true,
-		"git_status": true,
-		"activate_on_close": "history",
-		"show_close_button": "hover",
-		"show_diagnostics": "all"
-	},
-	"tab_size": 4,
-	"tab_bar": {
-		"show": true,
-		"show_nav_history_buttons": false
-	},
-	"show_whitespaces": "all",
-	"toolbar": {
-		"breadcrumbs": false,
-		"quick_actions": false,
-		"selections_menu": false
-	},
-	"show_nav_history_buttons": false,
-	"hide_mouse": "on_typing_and_movement",
-	"telemetry": {
-		"diagnostics": true,
-		"metrics": true
-	},
-	"preferred_line_length": 140,
-	"soft_wrap": "preferred_line_length",
-	"vim_mode": true,
-	"relative_line_numbers": true,
-	"vim": {
-		"toggle_relative_line_numbers": true
-		// "vertical_scroll_margin": 20
-	},
-	"active_pane_modifiers": {
-		"magnification": 1.0,
-		"border_size": 0.0,
-		"inactive_opacity": 0.4
-	},
-	"restore_on_startup": "last_session",
-	"base_keymap": "VSCode",
-	"lsp": {
-		"vtsls": {
-			"settings": {
-				"javascript": {
-					"format_on_save": "off",
-					"inlayHints": {
-						"parameterNames": {
-							"enabled": "all",
-							"suppressWhenArgumentMatchesName": false
-						},
-						"parameterTypes": {
-							"enabled": true
-						},
-						"variableTypes": {
-							"enabled": true,
-							"suppressWhenTypeMatchesName": true
-						},
-						"propertyDeclarationTypes": {
-							"enabled": true
-						},
-						"functionLikeReturnTypes": {
-							"enabled": true
-						},
-						"enumMemberValues": {
-							"enabled": true
-						}
-					}
-				},
-				"typescript": {
-					"format_on_save": "off",
-					"inlayHints": {
-						"parameterNames": {
-							"enabled": "all",
-							"suppressWhenArgumentMatchesName": false
-						},
-						"parameterTypes": {
-							"enabled": true
-						},
-						"variableTypes": {
-							"enabled": true,
-							"suppressWhenTypeMatchesName": true
-						},
-						"propertyDeclarationTypes": {
-							"enabled": true
-						},
-						"functionLikeReturnTypes": {
-							"enabled": true
-						},
-						"enumMemberValues": {
-							"enabled": true
-						}
-					}
-				}
-			}
-		},
-		"intelephense": {
-			"files": {
-				"maxSize": 3000000
-			}
-		}
-	},
-	"languages": {
-		"Vue.js": {
-			// "format_on_save": "off"
-			"soft_wrap": "preferred_line_length"
-		},
-		"PHP": {
-			"soft_wrap": "preferred_line_length",
-			"language_servers": ["intelephense", "!phpactor", "..."]
-		},
-		"Markdown": {
-			"soft_wrap": "preferred_line_length",
-			"remove_trailing_whitespace_on_save": false
-		},
-		"YAML": {
-			"tab_size": 2
-		}
-	}
+    "icon_theme": "Catppuccin Macchiato",
+    "project_panel": {
+        "dock": "right",
+        "indent_size": 14,
+        "auto_fold_dirs": false,
+        "scrollbar": {
+            "show": "auto"
+        }
+    },
+    "outline_panel": {
+        "button": false
+    },
+    "cursor_blink": false,
+    "theme": "Tokyo Night",
+    "buffer_font_size": 12,
+    "ui_font_size": 14,
+    "buffer_line_height": {
+        "custom": 1.4
+    },
+    "buffer_font_family": "Maple Mono",
+    "current_line_highlight": "all",
+    "cursor_shape": "bar",
+    "hard_tabs": false,
+    "experimental.theme_overrides": {
+        "syntax": {
+            "comment": {
+                "font_style": "italic"
+            },
+            "comment.doc": {
+                "font_style": "italic"
+            },
+            "keyword": {
+                "font_style": "italic"
+            }
+        }
+        // "editor.invisible": "#777777"
+    },
+    "inlay_hints": {
+        "enabled": true,
+        "show_type_hints": true,
+        "show_parameter_hints": true,
+        "show_other_hints": true,
+        "show_background": false,
+        "edit_debounce_ms": 700,
+        "scroll_debounce_ms": 50,
+        "toggle_on_modifiers_press": null
+    },
+    "edit_predictions": {
+        "disabled_globs": ["**/.env*", "**/*.pem", "**/*.key", "**/*.cert", "**/*.crt", "**/.dev.vars", "**/secrets.yml"]
+    },
+    "scrollbar": {
+        "show": "auto",
+        "cursors": true,
+        "git_diff": true,
+        "search_results": true,
+        "selected_text": true,
+        "selected_symbol": true,
+        "diagnostics": "all",
+        "axes": {
+            "horizontal": true,
+            "vertical": true
+        }
+    },
+    "git_diff": true,
+    "search_results": true,
+    "diagnostics": {
+        "include_warnings": true,
+        "inline": {
+            "enabled": true,
+            "update_debounce_ms": 150,
+            "padding": 4,
+            "min_column": 0,
+            "max_severity": null
+        }
+    },
+    "enable_language_server": true,
+    "format_on_save": "on",
+    "use_autoclose": true,
+    "tabs": {
+        "close_position": "right",
+        "file_icons": true,
+        "git_status": true,
+        "activate_on_close": "history",
+        "show_close_button": "hover",
+        "show_diagnostics": "all"
+    },
+    "tab_size": 4,
+    "tab_bar": {
+        "show": true,
+        "show_nav_history_buttons": false
+    },
+    "show_whitespaces": "all",
+    "toolbar": {
+        "breadcrumbs": false,
+        "quick_actions": false,
+        "selections_menu": false
+    },
+    "show_nav_history_buttons": false,
+    "hide_mouse": "on_typing_and_movement",
+    "telemetry": {
+        "diagnostics": true,
+        "metrics": true
+    },
+    "preferred_line_length": 140,
+    "soft_wrap": "preferred_line_length",
+    "vim_mode": true,
+    "relative_line_numbers": true,
+    "vim": {
+        "toggle_relative_line_numbers": true
+        // "vertical_scroll_margin": 20
+    },
+    "active_pane_modifiers": {
+        "magnification": 1.0,
+        "border_size": 0.0,
+        "inactive_opacity": 0.4
+    },
+    "restore_on_startup": "last_session",
+    "base_keymap": "VSCode",
+    "lsp": {
+        "vtsls": {
+            "settings": {
+                "javascript": {
+                    "format_on_save": "off",
+                    "inlayHints": {
+                        "parameterNames": {
+                            "enabled": "all",
+                            "suppressWhenArgumentMatchesName": false
+                        },
+                        "parameterTypes": {
+                            "enabled": true
+                        },
+                        "variableTypes": {
+                            "enabled": true,
+                            "suppressWhenTypeMatchesName": true
+                        },
+                        "propertyDeclarationTypes": {
+                            "enabled": true
+                        },
+                        "functionLikeReturnTypes": {
+                            "enabled": true
+                        },
+                        "enumMemberValues": {
+                            "enabled": true
+                        }
+                    }
+                },
+                "typescript": {
+                    "format_on_save": "off",
+                    "inlayHints": {
+                        "parameterNames": {
+                            "enabled": "all",
+                            "suppressWhenArgumentMatchesName": false
+                        },
+                        "parameterTypes": {
+                            "enabled": true
+                        },
+                        "variableTypes": {
+                            "enabled": true,
+                            "suppressWhenTypeMatchesName": true
+                        },
+                        "propertyDeclarationTypes": {
+                            "enabled": true
+                        },
+                        "functionLikeReturnTypes": {
+                            "enabled": true
+                        },
+                        "enumMemberValues": {
+                            "enabled": true
+                        }
+                    }
+                }
+            }
+        },
+        "intelephense": {
+            "files": {
+                "maxSize": 3000000
+            }
+        }
+    },
+    "languages": {
+        "Vue.js": {
+            // "format_on_save": "off"
+            "soft_wrap": "preferred_line_length"
+        },
+        "PHP": {
+            "soft_wrap": "preferred_line_length",
+            "language_servers": ["intelephense", "!phpactor", "..."]
+        },
+        "Markdown": {
+            "soft_wrap": "preferred_line_length",
+            "remove_trailing_whitespace_on_save": false
+        },
+        "YAML": {
+            "tab_size": 2
+        }
+    }
 }
