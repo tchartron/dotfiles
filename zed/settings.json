@@ -201,6 +201,9 @@
         },
         "YAML": {
             "tab_size": 2
+        },
+        "Helm": {
+            "tab_size": 2
         }
     },
     "file_types": {
