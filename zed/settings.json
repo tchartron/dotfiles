@@ -70,8 +70,6 @@
             "vertical": true
         }
     },
-    "git_diff": true,
-    "search_results": true,
     "diagnostics": {
         "include_warnings": true,
         "inline": {
@@ -104,7 +102,6 @@
         "quick_actions": false,
         "selections_menu": false
     },
-    "show_nav_history_buttons": false,
     "hide_mouse": "on_typing_and_movement",
     "telemetry": {
         "diagnostics": true,
@@ -119,7 +116,6 @@
         // "vertical_scroll_margin": 20
     },
     "active_pane_modifiers": {
-        "magnification": 1.0,
         "border_size": 0.0,
         "inactive_opacity": 0.4
     },
@@ -180,11 +176,7 @@
                 }
             }
         },
-        "intelephense": {
-            "files": {
-                "maxSize": 3000000
-            }
-        }
+        "intelephense": {}
     },
     "languages": {
         "Vue.js": {
@@ -212,7 +204,42 @@
             "**/templates/**/*.yaml",
             "**/templates/**/*.yml",
             "**/helmfile.d/**/*.yaml",
-            "**/helmfile.d/**/*.yml"
+            "**/helmfile.d/**/*.yml",
+            "**/helmfile.d/**/*.yml",
+            "shared/rbac/*.yml"
         ]
+    },
+    "unnecessary_code_fade": 0.8,
+    "features": {
+        "edit_prediction_provider": "none"
+    },
+    "agent": {
+        "enabled": false
+    },
+    "language_models": {
+        "anthropic": {
+            "api_url": ""
+        },
+        "google": {
+            "api_url": ""
+        },
+        "ollama": {
+            "api_url": ""
+        },
+        "openai": {
+            "api_url": ""
+        },
+        "open_router": {
+            "api_url": ""
+        },
+        "lmstudio": {
+            "api_url": ""
+        },
+        "deepseek": {
+            "api_url": ""
+        },
+        "mistral": {
+            "api_url": ""
+        }
     }
 }
