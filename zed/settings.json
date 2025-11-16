@@ -176,7 +176,21 @@
                 }
             }
         },
-        "intelephense": {}
+        // "intelephense": {
+        //     "files": {
+        //         "maxSize": 3000000
+        //     }
+        // }
+        "basedpyright": {
+            "settings": {
+                "basedpyright": {
+                    "analysis": {
+                        "venvPath": ".venv",
+                        "venv": ".venv"
+                    }
+                }
+            }
+        }
     },
     "languages": {
         "Vue.js": {
@@ -204,42 +218,7 @@
             "**/templates/**/*.yaml",
             "**/templates/**/*.yml",
             "**/helmfile.d/**/*.yaml",
-            "**/helmfile.d/**/*.yml",
-            "**/helmfile.d/**/*.yml",
-            "shared/rbac/*.yml"
+            "**/helmfile.d/**/*.yml"
         ]
-    },
-    "unnecessary_code_fade": 0.8,
-    "features": {
-        "edit_prediction_provider": "none"
-    },
-    "agent": {
-        "enabled": false
-    },
-    "language_models": {
-        "anthropic": {
-            "api_url": ""
-        },
-        "google": {
-            "api_url": ""
-        },
-        "ollama": {
-            "api_url": ""
-        },
-        "openai": {
-            "api_url": ""
-        },
-        "open_router": {
-            "api_url": ""
-        },
-        "lmstudio": {
-            "api_url": ""
-        },
-        "deepseek": {
-            "api_url": ""
-        },
-        "mistral": {
-            "api_url": ""
-        }
     }
 }
