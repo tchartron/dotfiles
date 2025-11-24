@@ -42,7 +42,7 @@ copy-on-select = clipboard
 mouse-hide-while-typing = true
 
 # Quick Terminal Specific Settings
-quick-terminal-position = top
+quick-terminal-position = right
 quick-terminal-screen = main
 quick-terminal-animation-duration = 0.2
-quick-terminal-size = 50%
+quick-terminal-size = 70%
