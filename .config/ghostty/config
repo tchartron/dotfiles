@@ -3,7 +3,7 @@
 config-default-files = true
 
 # Theme and Colors
-theme = "tokyonight-night"
+theme = "TokyoNight Night"
 background-opacity = 0.95
 background-blur-radius = 10
 
