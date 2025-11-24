@@ -1,0 +1,48 @@
+# Ghostty Terminal Configuration
+
+config-default-files = true
+
+# Theme and Colors
+theme = "tokyonight-night"
+background-opacity = 0.90
+background-blur-radius = 10
+
+# Font Configuration
+font-family = "Maple Mono"
+font-size = 12
+font-style-italic = true
+
+# Window Appearance
+window-padding-x = 7
+window-padding-y = 7
+window-decoration = true
+window-theme = auto
+macos-titlebar-style = hidden
+resize-overlay = always
+
+# Cursor
+cursor-style = block
+cursor-style-blink = true
+cursor-click-to-move = true
+
+# Shell Integration
+shell-integration = detect
+shell-integration-features = cursor,sudo,title
+
+# Quick Terminal (Global Hotkey)
+# Press Cmd+Shift+Space from anywhere to toggle Quick Terminal
+keybind = global:super+shift+space=toggle_quick_terminal
+
+# Performance
+clipboard-read = allow
+clipboard-write = allow
+copy-on-select = clipboard
+
+# Mouse
+mouse-hide-while-typing = true
+
+# Quick Terminal Specific Settings
+quick-terminal-position = top
+quick-terminal-screen = main
+quick-terminal-animation-duration = 0.2
+quick-terminal-size = 50%
