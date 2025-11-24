@@ -4,7 +4,7 @@ config-default-files = true
 
 # Theme and Colors
 theme = "tokyonight-night"
-background-opacity = 0.90
+background-opacity = 0.95
 background-blur-radius = 10
 
 # Font Configuration
