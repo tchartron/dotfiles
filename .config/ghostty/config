@@ -3,7 +3,7 @@
 config-default-files = true
 
 # Theme and Colors
-theme = "TokyoNight Night"
+theme = "Ayu"
 background-opacity = 0.95
 background-blur-radius = 10
 
@@ -21,7 +21,7 @@ macos-titlebar-style = hidden
 resize-overlay = always
 
 # Cursor
-cursor-style = block
+cursor-style = underline
 cursor-style-blink = true
 cursor-click-to-move = true
 
