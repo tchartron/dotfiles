@@ -21,13 +21,13 @@ macos-titlebar-style = hidden
 resize-overlay = always
 
 # Cursor
-cursor-style = underline
+cursor-style = block_hollow
 cursor-style-blink = true
 cursor-click-to-move = true
 
 # Shell Integration
 shell-integration = detect
-shell-integration-features = cursor,sudo,title
+shell-integration-features = no-cursor,sudo,title
 
 # Quick Terminal (Global Hotkey)
 # Press Cmd+Shift+Space from anywhere to toggle Quick Terminal
