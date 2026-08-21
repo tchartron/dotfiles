@@ -35,4 +35,4 @@ cask "orbstack"
 cask "vivaldi"
 
 # Font
-cask "font-maple"
+cask "font-maple-mono"
