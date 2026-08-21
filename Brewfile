@@ -1,42 +1,38 @@
 tap "homebrew/bundle"
-tap "homebrew/cask-fonts"
-brew "ctop"
+
+# Shell
+brew "starship"
 brew "fzf"
-brew "git"
-brew "neovim"
-brew "node"
+brew "zoxide"
+brew "direnv"
+
+# CLI
+brew "ripgrep"
+brew "fd"
+brew "bat"
+brew "jq"
+brew "yq"
+
+# Terminal
 brew "tmux"
-cask "alacritty"
-cask "firefox"
-cask "font-maple"
-cask "insomnia"
+brew "vim"
+
+# Git
+brew "git"
+
+# DevOps
+brew "awscli"
+brew "kubectl"
+brew "helm"
+brew "k9s"
+brew "terraform"
+brew "ansible"
+
+# Applications
+cask "ghostty"
+cask "zed"
 cask "orbstack"
-cask "rectangle"
-cask "spotify"
-cask "tableplus"
-vscode "asvetliakov.vscode-neovim"
-vscode "bmewburn.vscode-intelephense-client"
-vscode "bradlc.vscode-tailwindcss"
-vscode "davidanson.vscode-markdownlint"
-vscode "eamodio.gitlens"
-vscode "enkia.tokyo-night"
-vscode "hashicorp.terraform"
-vscode "mads-hartmann.bash-ide-vscode"
-vscode "ms-azuretools.vscode-docker"
-vscode "ms-kubernetes-tools.vscode-kubernetes-tools"
-vscode "ms-python.debugpy"
-vscode "ms-python.python"
-vscode "ms-python.vscode-pylance"
-vscode "ms-vscode.makefile-tools"
-vscode "ms-vscode.vscode-typescript-next"
-vscode "oderwat.indent-rainbow"
-vscode "qcz.text-power-tools"
-vscode "redhat.ansible"
-vscode "redhat.vscode-yaml"
-vscode "sdras.night-owl"
-vscode "timonwong.shellcheck"
-vscode "usernamehw.errorlens"
-vscode "vue.volar"
-vscode "whizkydee.material-palenight-theme"
-vscode "wix.vscode-import-cost"
-vscode "zamerick.vscode-caddyfile-syntax"
+cask "vivaldi"
+
+# Font
+cask "font-maple"
