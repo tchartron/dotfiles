@@ -1,0 +1,92 @@
+# ~/.tmux.conf
+
+# ---------------------------------------------------------------------------
+# General
+# ---------------------------------------------------------------------------
+
+set -g default-terminal "tmux-256color"
+set -g history-limit 50000
+
+set -g mouse on
+
+set -g base-index 1
+setw -g pane-base-index 1
+
+set -g renumber-windows on
+
+set -g escape-time 10
+
+# ---------------------------------------------------------------------------
+# Prefix
+# ---------------------------------------------------------------------------
+
+# Keep the standard tmux prefix for compatibility with remote servers.
+set -g prefix C-b
+unbind C-a
+
+# ---------------------------------------------------------------------------
+# Windows
+# ---------------------------------------------------------------------------
+
+bind c new-window -c "#{pane_current_path}"
+bind % split-window -h -c "#{pane_current_path}"
+bind '"' split-window -v -c "#{pane_current_path}"
+
+# ---------------------------------------------------------------------------
+# Pane navigation
+# ---------------------------------------------------------------------------
+
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+# Also keep the standard arrow-key navigation.
+bind Left select-pane -L
+bind Down select-pane -D
+bind Up select-pane -U
+bind Right select-pane -R
+
+# ---------------------------------------------------------------------------
+# Pane resizing
+# ---------------------------------------------------------------------------
+
+bind -r H resize-pane -L 5
+bind -r J resize-pane -D 5
+bind -r K resize-pane -U 5
+bind -r L resize-pane -R 5
+
+# ---------------------------------------------------------------------------
+# Copy mode
+# ---------------------------------------------------------------------------
+
+setw -g mode-keys vi
+
+bind [ copy-mode
+bind ] paste-buffer
+
+# ---------------------------------------------------------------------------
+# Appearance
+# ---------------------------------------------------------------------------
+
+set -g status-position bottom
+set -g status-interval 5
+
+set -g status-left " #S "
+set -g status-left-length 30
+
+set -g window-status-format " #I:#W "
+set -g window-status-current-format " #I:#W "
+
+set -g status-right " %Y-%m-%d %H:%M "
+
+set -g pane-border-status off
+
+# ---------------------------------------------------------------------------
+# Terminal
+# ---------------------------------------------------------------------------
+
+set -g focus-events on
+
+# Enable true color when supported.
+set -as terminal-features ",xterm-256color:RGB"

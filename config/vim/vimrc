@@ -1,0 +1,109 @@
+" ~/.vimrc
+
+" ---------------------------------------------------------------------------
+" General
+" ---------------------------------------------------------------------------
+
+set nocompatible
+set encoding=utf-8
+set termguicolors
+
+set hidden
+set history=1000
+set autoread
+set backspace=indent,eol,start
+
+" ---------------------------------------------------------------------------
+" UI
+" ---------------------------------------------------------------------------
+
+set number
+set relativenumber
+set cursorline
+set ruler
+set showcmd
+set wildmenu
+set laststatus=2
+
+set signcolumn=yes
+set scrolloff=5
+set sidescrolloff=5
+
+set nowrap
+
+" ---------------------------------------------------------------------------
+" Indentation
+" ---------------------------------------------------------------------------
+
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+set autoindent
+set smartindent
+
+" ---------------------------------------------------------------------------
+" Search
+" ---------------------------------------------------------------------------
+
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+
+" Clear search highlighting with Esc.
+nnoremap <Esc> :nohlsearch<CR>
+
+" ---------------------------------------------------------------------------
+" Files
+" ---------------------------------------------------------------------------
+
+set backup
+set backupdir=$HOME/.vim/backup//
+set directory=$HOME/.vim/swap//
+set undofile
+set undodir=$HOME/.vim/undo//
+
+" Create required directories automatically.
+if !isdirectory(expand('~/.vim/backup'))
+    call mkdir(expand('~/.vim/backup'), 'p')
+endif
+
+if !isdirectory(expand('~/.vim/swap'))
+    call mkdir(expand('~/.vim/swap'), 'p')
+endif
+
+if !isdirectory(expand('~/.vim/undo'))
+    call mkdir(expand('~/.vim/undo'), 'p')
+endif
+
+" ---------------------------------------------------------------------------
+" Clipboard
+" ---------------------------------------------------------------------------
+
+if has('clipboard')
+    set clipboard=unnamed,unnamedplus
+endif
+
+" ---------------------------------------------------------------------------
+" Completion
+" ---------------------------------------------------------------------------
+
+set completeopt=menu,menuone,noselect
+set wildmode=longest:full,full
+
+" ---------------------------------------------------------------------------
+" Misc
+" ---------------------------------------------------------------------------
+
+set mouse=a
+set ttyfast
+
+" Keep line numbers relative in normal mode and absolute in insert mode.
+augroup numbertoggle
+    autocmd!
+    autocmd BufEnter,FocusGained,InsertLeave,WinEnter *
+        \ set relativenumber
+    autocmd BufLeave,FocusLost,InsertEnter,WinLeave *
+        \ set norelativenumber
+augroup END

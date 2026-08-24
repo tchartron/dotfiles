@@ -1,71 +1,71 @@
-# ~/.zshrc
+# Ghostty configuration
 
 # ---------------------------------------------------------------------------
-# History
+# Theme
 # ---------------------------------------------------------------------------
 
-HISTFILE="$HOME/.zsh_history"
-HISTSIZE=10000
-SAVEHIST=10000
-
-setopt HIST_IGNORE_DUPS
-setopt HIST_IGNORE_SPACE
-setopt HIST_REDUCE_BLANKS
-setopt SHARE_HISTORY
+theme = Catppuccin Macchiato
 
 # ---------------------------------------------------------------------------
-# Completion
+# Font
 # ---------------------------------------------------------------------------
 
-autoload -Uz compinit
-compinit
+font-family = Maple Mono
+font-size = 12
+font-style-italic = true
 
 # ---------------------------------------------------------------------------
-# Editing
+# Window
 # ---------------------------------------------------------------------------
 
-bindkey -e
+background-opacity = 0.95
+background-blur-radius = 10
+
+window-padding-x = 7
+window-padding-y = 7
+
+window-decoration = true
+window-theme = auto
+macos-titlebar-style = hidden
+
+resize-overlay = always
 
 # ---------------------------------------------------------------------------
-# fzf
+# Cursor
 # ---------------------------------------------------------------------------
 
-if command -v fzf >/dev/null 2>&1; then
-    source <(fzf --zsh)
-fi
+cursor-style = block
+cursor-style-blink = true
+cursor-click-to-move = true
 
 # ---------------------------------------------------------------------------
-# zoxide
+# Shell integration
 # ---------------------------------------------------------------------------
 
-if command -v zoxide >/dev/null 2>&1; then
-    eval "$(zoxide init zsh)"
-fi
+shell-integration = detect
+shell-integration-features = cursor,sudo,title
 
 # ---------------------------------------------------------------------------
-# direnv
+# Clipboard
 # ---------------------------------------------------------------------------
 
-if command -v direnv >/dev/null 2>&1; then
-    eval "$(direnv hook zsh)"
-fi
+clipboard-read = allow
+clipboard-write = allow
+copy-on-select = clipboard
 
 # ---------------------------------------------------------------------------
-# Starship
+# Mouse
 # ---------------------------------------------------------------------------
 
-if command -v starship >/dev/null 2>&1; then
-    eval "$(starship init zsh)"
-fi
+mouse-hide-while-typing = true
 
 # ---------------------------------------------------------------------------
-# Ubuntu command names
+# Quick terminal
 # ---------------------------------------------------------------------------
 
-if ! command -v fd >/dev/null 2>&1 && command -v fdfind >/dev/null 2>&1; then
-    alias fd='fdfind'
-fi
+keybind = global:super+shift+space=toggle_quick_terminal
 
-if ! command -v bat >/dev/null 2>&1 && command -v batcat >/dev/null 2>&1; then
-    alias bat='batcat'
-fi
+quick-terminal-position = right
+quick-terminal-screen = main
+quick-terminal-animation-duration = 0.2
+quick-terminal-size = 70%

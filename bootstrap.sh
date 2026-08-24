@@ -17,10 +17,6 @@ success() {
     printf '✓ %s\n' "$1"
 }
 
-skip() {
-    printf '· %s\n' "$1"
-}
-
 error() {
     printf '✗ %s\n' "$1" >&2
 }
@@ -34,13 +30,16 @@ abort() {
 # Arguments
 # ---------------------------------------------------------------------------
 
-if [[ $# -gt 1 ]]; then
-    abort "Usage: $0 [--dry-run]"
-fi
-
-if [[ "${1:-}" == "--dry-run" ]]; then
-    DRY_RUN=true
-fi
+case "${1:-}" in
+    "")
+        ;;
+    --dry-run)
+        DRY_RUN=true
+        ;;
+    *)
+        abort "Usage: $0 [--dry-run]"
+        ;;
+esac
 
 # ---------------------------------------------------------------------------
 # Platform
@@ -53,7 +52,7 @@ case "$OS" in
         PLATFORM="macos"
         ;;
     Linux)
-        PLATFORM="linux"
+        PLATFORM="ubuntu"
         ;;
     *)
         abort "Unsupported operating system: $OS"
@@ -61,54 +60,59 @@ case "$OS" in
 esac
 
 log "Checking platform"
-success "$PLATFORM detected"
 
-# ---------------------------------------------------------------------------
-# Homebrew - macOS only
-# ---------------------------------------------------------------------------
+if [[ "$PLATFORM" == "ubuntu" ]]; then
+    [[ -f /etc/os-release ]] || abort "Cannot determine Linux distribution."
 
-if [[ "$PLATFORM" == "macos" ]]; then
-    if command -v brew >/dev/null 2>&1; then
-        success "Homebrew available"
-    elif [[ "$DRY_RUN" == true ]]; then
-        printf '· Would install Homebrew\n'
-    else
-        log "Installing Homebrew"
+    # shellcheck disable=SC1091
+    source /etc/os-release
 
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    [[ "${ID:-}" == "ubuntu" ]] || \
+        abort "Unsupported Linux distribution: ${ID:-unknown}."
 
-        if [[ -x /opt/homebrew/bin/brew ]]; then
-            eval "$(/opt/homebrew/bin/brew shellenv)"
-        elif [[ -x /usr/local/bin/brew ]]; then
-            eval "$(/usr/local/bin/brew shellenv)"
-        else
-            abort "Homebrew installation completed, but brew was not found."
-        fi
-
-        success "Homebrew installed"
-    fi
+    success "Ubuntu detected"
+else
+    success "macOS detected"
 fi
 
 # ---------------------------------------------------------------------------
-# Ubuntu / apt
+# Homebrew
 # ---------------------------------------------------------------------------
 
-if [[ "$PLATFORM" == "linux" ]]; then
-    if ! command -v apt-get >/dev/null 2>&1; then
-        abort "apt-get is required on Linux. This bootstrap currently supports Ubuntu only."
+if [[ "$PLATFORM" == "macos" ]]; then
+    BREW=""
+
+    if command -v brew >/dev/null 2>&1; then
+        BREW="$(command -v brew)"
+    elif [[ -x /opt/homebrew/bin/brew ]]; then
+        BREW="/opt/homebrew/bin/brew"
+    elif [[ -x /usr/local/bin/brew ]]; then
+        BREW="/usr/local/bin/brew"
     fi
 
-    if [[ -f /etc/os-release ]]; then
-        . /etc/os-release
+    if [[ -z "$BREW" ]]; then
+        if [[ "$DRY_RUN" == true ]]; then
+            printf '· Would install Homebrew\n'
+        else
+            log "Installing Homebrew"
 
-        if [[ "${ID:-}" != "ubuntu" ]]; then
-            abort "Unsupported Linux distribution: ${ID:-unknown}. Ubuntu is currently supported."
+            /bin/bash -c \
+                "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+            if [[ -x /opt/homebrew/bin/brew ]]; then
+                BREW="/opt/homebrew/bin/brew"
+            elif [[ -x /usr/local/bin/brew ]]; then
+                BREW="/usr/local/bin/brew"
+            else
+                abort "Homebrew installation completed, but brew was not found."
+            fi
         fi
-    else
-        abort "Cannot determine Linux distribution."
     fi
 
-    success "Ubuntu detected"
+    if [[ -n "$BREW" ]]; then
+        eval "$("$BREW" shellenv)"
+        success "Homebrew available"
+    fi
 fi
 
 # ---------------------------------------------------------------------------
@@ -123,13 +127,15 @@ install_macos_packages() {
         return
     fi
 
-    brew bundle --file="$DOTFILES_DIR/Brewfile"
+    "$BREW" bundle --file="$DOTFILES_DIR/Brewfile"
 
     success "Homebrew bundle complete"
 }
 
 install_ubuntu_packages() {
     local packages=(
+        zsh
+        starship
         fzf
         zoxide
         direnv
@@ -137,9 +143,10 @@ install_ubuntu_packages() {
         fd-find
         bat
         jq
+        yq
+        git
         tmux
         vim
-        git
     )
 
     log "Installing Ubuntu packages"
@@ -155,14 +162,11 @@ install_ubuntu_packages() {
     success "Ubuntu packages installed"
 }
 
-case "$PLATFORM" in
-    macos)
-        install_macos_packages
-        ;;
-    linux)
-        install_ubuntu_packages
-        ;;
-esac
+if [[ "$PLATFORM" == "macos" ]]; then
+    install_macos_packages
+else
+    install_ubuntu_packages
+fi
 
 # ---------------------------------------------------------------------------
 # Configuration
@@ -172,9 +176,7 @@ link_config() {
     local source="$1"
     local destination="$2"
 
-    if [[ ! -e "$source" ]]; then
-        abort "Missing source file: $source"
-    fi
+    [[ -e "$source" ]] || abort "Missing source file: $source"
 
     if [[ -L "$destination" ]]; then
         local target
@@ -185,7 +187,7 @@ link_config() {
             return
         fi
 
-        abort "$destination is already a symlink pointing to: $target"
+        abort "$destination already points to: $target"
     fi
 
     if [[ -e "$destination" ]]; then
@@ -220,6 +222,32 @@ link_config \
 link_config \
     "$DOTFILES_DIR/config/starship/starship.toml" \
     "$HOME/.config/starship.toml"
+
+link_config \
+    "$DOTFILES_DIR/config/tmux/tmux.conf" \
+    "$HOME/.tmux.conf"
+
+link_config \
+    "$DOTFILES_DIR/config/vim/vimrc" \
+    "$HOME/.vimrc"
+
+if [[ "$PLATFORM" == "macos" ]]; then
+    link_config \
+        "$DOTFILES_DIR/config/ghostty/config" \
+        "$HOME/.config/ghostty/config"
+
+    link_config \
+        "$DOTFILES_DIR/config/zed/settings.json" \
+        "$HOME/.config/zed/settings.json"
+
+    link_config \
+        "$DOTFILES_DIR/config/zed/keymap.json" \
+        "$HOME/.config/zed/keymap.json"
+
+    link_config \
+        "$DOTFILES_DIR/config/zed/themes/zed_dark.json" \
+        "$HOME/.config/zed/themes/zed_dark.json"
+fi
 
 # ---------------------------------------------------------------------------
 # Done
