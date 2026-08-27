@@ -36,3 +36,4 @@ cask "vivaldi"
 
 # Font
 cask "font-maple-mono"
+cask "font-victor-mono"

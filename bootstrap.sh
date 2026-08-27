@@ -244,9 +244,6 @@ if [[ "$PLATFORM" == "macos" ]]; then
         "$DOTFILES_DIR/config/zed/keymap.json" \
         "$HOME/.config/zed/keymap.json"
 
-    link_config \
-        "$DOTFILES_DIR/config/zed/themes/zed_dark.json" \
-        "$HOME/.config/zed/themes/zed_dark.json"
 fi
 
 # ---------------------------------------------------------------------------

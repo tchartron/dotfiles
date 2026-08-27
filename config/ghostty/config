@@ -10,7 +10,7 @@ theme = Catppuccin Macchiato
 # Font
 # ---------------------------------------------------------------------------
 
-font-family = Maple Mono
+font-family = Victor Mono
 font-size = 12
 font-style-italic = true
 
