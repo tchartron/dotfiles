@@ -69,3 +69,20 @@ fi
 if ! command -v bat >/dev/null 2>&1 && command -v batcat >/dev/null 2>&1; then
     alias bat='batcat'
 fi
+
+# ---------------------------------------------------------------------------
+# Aliases
+# ---------------------------------------------------------------------------
+
+alias gws='git status'
+alias gia='git add'
+alias gcm='git commit --message'
+alias gcam='git commit --all --message'
+alias gp='git push'
+alias gl='git log'
+alias glg='git log --oneline --decorate --graph'
+alias gltag="git describe --abbrev=0 --tags"
+
+alias t="tmux"
+alias dk='docker'
+alias k='kubectl'
