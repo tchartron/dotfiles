@@ -1,6 +1,4 @@
-tap "homebrew/bundle"
 tap "hashicorp/tap"
-
 
 # Shell
 brew "starship"
