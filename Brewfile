@@ -1,5 +1,5 @@
 tap "homebrew/bundle"
-tap hashicorp/tap
+tap "hashicorp/tap"
 
 
 # Shell
