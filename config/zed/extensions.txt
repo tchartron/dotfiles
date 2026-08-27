@@ -1,0 +1,11 @@
+Dockerfile
+HTML
+Catppuccin
+Catppuccin Icons
+SQL
+PHP
+Terraform
+Emmet
+Ansible
+Helm
+Toml
