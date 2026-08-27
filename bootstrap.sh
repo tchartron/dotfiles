@@ -127,6 +127,8 @@ install_macos_packages() {
         return
     fi
 
+    brew trust --formula hashicorp/tap/terraform
+
     "$BREW" bundle --file="$DOTFILES_DIR/Brewfile"
 
     success "Homebrew bundle complete"
