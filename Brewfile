@@ -1,4 +1,6 @@
 tap "homebrew/bundle"
+tap hashicorp/tap
+
 
 # Shell
 brew "starship"
@@ -25,7 +27,7 @@ brew "awscli"
 brew "kubectl"
 brew "helm"
 brew "k9s"
-brew "terraform"
+brew "hashicorp/tap/terraform"
 brew "ansible"
 
 # Applications
