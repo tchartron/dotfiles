@@ -233,8 +233,8 @@ link_config \
 
 if [[ "$PLATFORM" == "macos" ]]; then
     link_config \
-        "$DOTFILES_DIR/config/ghostty/config" \
-        "$HOME/.config/ghostty/config"
+        "$DOTFILES_DIR/config/ghostty/config.ghostty" \
+        "$HOME/.config/ghostty/config.ghostty"
 
     link_config \
         "$DOTFILES_DIR/config/zed/settings.json" \
