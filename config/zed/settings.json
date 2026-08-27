@@ -39,7 +39,7 @@
     "tab_size": 4,
 
     "preferred_line_length": 140,
-    "soft_wrap": "prefer_lineks",
+    "soft_wrap": "prefer_line",
 
     "show_whitespaces": "all",
 
