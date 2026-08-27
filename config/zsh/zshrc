@@ -80,6 +80,7 @@ alias gcm='git commit --message'
 alias gcam='git commit --all --message'
 alias gp='git push'
 alias gl='git log'
+alias gwd="git diff"
 alias glg='git log --oneline --decorate --graph'
 alias gltag="git describe --abbrev=0 --tags"
 
