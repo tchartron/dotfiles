@@ -4,13 +4,13 @@
 # Theme
 # ---------------------------------------------------------------------------
 
-theme = Catppuccin Macchiato
+theme = Gruvbox Dark Hard
 
 # ---------------------------------------------------------------------------
 # Font
 # ---------------------------------------------------------------------------
 
-font-family = Victor Mono
+font-family = Operator Mono
 font-size = 12
 font-style-italic = true
 
