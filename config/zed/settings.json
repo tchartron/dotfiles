@@ -8,10 +8,10 @@
     // -----------------------------------------------------------------------
 
     "cli_default_open_behavior": "existing_window",
-    "theme": "Catppuccin Macchiato",
+    "theme": "Gruvbox Dark Hard",
     "icon_theme": "Catppuccin Macchiato",
 
-    "buffer_font_family": "Victor Mono",
+    "buffer_font_family": "Operator Mono",
     "buffer_font_size": 12.0,
     "buffer_font_weight": 400.0,
     "buffer_line_height": {
