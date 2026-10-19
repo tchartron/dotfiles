@@ -1,3 +1,14 @@
+# Zed extensions
+#
+# This file is INFORMATIONAL ONLY. It is not read by any script and is
+# never applied automatically. It is a reference list of the extensions
+# installed on my machines, so they can be installed by hand (or checked)
+# on a new setup.
+#
+# Install one manually from the command line with:
+#
+#     zed --install-extension <name>
+
 Dockerfile
 HTML
 Catppuccin

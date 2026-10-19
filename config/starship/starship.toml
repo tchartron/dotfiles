@@ -1,6 +1,6 @@
 # ~/.config/starship.toml
 
-add_newline = false
+add_newline = true
 
 format = """
 $directory\
@@ -17,7 +17,7 @@ $character
 # ---------------------------------------------------------------------------
 
 [directory]
-style = "bold"
+style = "bold blue"
 truncation_length = 3
 truncate_to_repo = false
 
@@ -27,7 +27,7 @@ truncate_to_repo = false
 
 [git_branch]
 format = " [$branch]($style)"
-style = "bold"
+style = "bold purple"
 
 [git_status]
 format = " [$all_status$ahead_behind]($style)"
@@ -88,7 +88,7 @@ detect_files = [
 
 [status]
 disabled = false
-format = " [$status]($style)"
+format = " [$symbol$status]($style)"
 style = "bold red"
 symbol = "✘ "
 success_symbol = ""
@@ -99,6 +99,6 @@ recognize_signal_code = true
 # ---------------------------------------------------------------------------
 
 [character]
-success_symbol = " ❯"
-error_symbol = " ❯"
-vimcmd_symbol = " ❮"
+success_symbol = " [❯](bold green)"
+error_symbol = " [❯](bold red)"
+vimcmd_symbol = " [❮](bold yellow)"

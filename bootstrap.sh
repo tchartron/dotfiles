@@ -249,6 +249,24 @@ if [[ "$PLATFORM" == "macos" ]]; then
 fi
 
 # ---------------------------------------------------------------------------
+# Default shell
+# ---------------------------------------------------------------------------
+
+if [[ "$PLATFORM" == "ubuntu" ]]; then
+    ZSH_BIN="$(command -v zsh || true)"
+
+    if [[ -n "$ZSH_BIN" && "${SHELL:-}" != "$ZSH_BIN" ]]; then
+        if [[ "$DRY_RUN" == true ]]; then
+            printf '· Would set default shell to %s\n' "$ZSH_BIN"
+        else
+            log "Setting default shell to zsh"
+            chsh -s "$ZSH_BIN"
+            success "Default shell set to $ZSH_BIN"
+        fi
+    fi
+fi
+
+# ---------------------------------------------------------------------------
 # Done
 # ---------------------------------------------------------------------------
 
