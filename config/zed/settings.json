@@ -8,7 +8,7 @@
     // -----------------------------------------------------------------------
 
     "cli_default_open_behavior": "existing_window",
-    "theme": "Gruvbox Dark Hard",
+    "theme": "Github Dark",
     "icon_theme": "Catppuccin Macchiato",
 
     "buffer_font_family": "Operator Mono",
