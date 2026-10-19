@@ -12,7 +12,7 @@ theme = Github Dark
 
 font-family = Operator Mono
 font-size = 12
-font-style-italic = true
+font-thicken = true
 
 # ---------------------------------------------------------------------------
 # Window
