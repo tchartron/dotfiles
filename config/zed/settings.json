@@ -8,7 +8,7 @@
     // -----------------------------------------------------------------------
 
     "terminal": {
-        "font_size": 14.0,
+        "font_size": 13.0,
     },
     "cli_default_open_behavior": "existing_window",
     "theme": {
@@ -23,7 +23,7 @@
     },
 
     "buffer_font_family": "Operator Mono",
-    "buffer_font_size": 14.0,
+    "buffer_font_size": 13.0,
     "buffer_font_weight": 300.0,
     "buffer_line_height": {
         "custom": 1.7000000476837158,
