@@ -10,9 +10,9 @@ theme = GitHub Dark Default
 # Font
 # ---------------------------------------------------------------------------
 
-font-family = Maple Mono
-font-size = 12
-font-thicken = true
+font-family = Operator Mono
+font-size = 14
+font-thicken = false
 
 # ---------------------------------------------------------------------------
 # Window
