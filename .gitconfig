@@ -1,0 +1,12 @@
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+	name = xxx xxx
+	email = xxx.xxx@xxx.com
+
+[color "diff"]
+	plain = normal
+	meta = bold
+	frag = cyan
+	old = red
+	new = blue
