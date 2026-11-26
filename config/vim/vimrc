@@ -1,17 +1,59 @@
 " ~/.vimrc
+"
+" Portable core: works with a stock Vim on any server, no plugin required.
+" Plugin-dependent settings live in config/vim/ide.vim, linked to
+" ~/.vim/ide.vim by bootstrap.sh and sourced at the end of this file only
+" when it exists. A machine without it behaves like plain Vim.
+
+" ---------------------------------------------------------------------------
+" Defaults
+" ---------------------------------------------------------------------------
+
+" Having a vimrc disables Vim's bundled defaults (this is what left syntax
+" highlighting and filetype handling off). Load them explicitly.
+if filereadable($VIMRUNTIME . '/defaults.vim')
+    source $VIMRUNTIME/defaults.vim
+else
+    syntax on
+    filetype plugin indent on
+endif
+
+let mapleader = ' '
 
 " ---------------------------------------------------------------------------
 " General
 " ---------------------------------------------------------------------------
 
-set nocompatible
 set encoding=utf-8
-set termguicolors
 
 set hidden
 set history=1000
 set autoread
-set backspace=indent,eol,start
+set updatetime=250
+
+if exists('+belloff')
+    set belloff=all
+endif
+
+" Reload files changed outside of Vim (git, formatters, other terminals).
+augroup autoread_checktime
+    autocmd!
+    autocmd FocusGained,BufEnter * if mode() !=# 'c' | checktime | endif
+augroup END
+
+" ---------------------------------------------------------------------------
+" Colors
+" ---------------------------------------------------------------------------
+
+" Only use truecolor when the terminal says it supports it, so a server with a
+" minimal $TERM keeps working with 256 colors.
+if has('termguicolors') && ($COLORTERM ==# 'truecolor' || $COLORTERM ==# '24bit')
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+    set termguicolors
+endif
+
+set background=dark
 
 " ---------------------------------------------------------------------------
 " UI
@@ -19,16 +61,32 @@ set backspace=indent,eol,start
 
 set number
 set relativenumber
-set ruler
-set showcmd
-set wildmenu
 set laststatus=2
+set cursorline
 
 set signcolumn=yes
 set scrolloff=5
 set sidescrolloff=5
 
 set nowrap
+
+set splitright
+set splitbelow
+
+" Show tabs and trailing whitespace.
+set list
+set listchars=tab:»\ ,trail:·,nbsp:+
+
+set statusline=%<%f\ %h%m%r%=%y\ %l:%c\ %P
+
+" Keep line numbers relative in normal mode and absolute in insert mode.
+augroup numbertoggle
+    autocmd!
+    autocmd BufEnter,FocusGained,InsertLeave,WinEnter *
+        \ set relativenumber
+    autocmd BufLeave,FocusLost,InsertEnter,WinLeave *
+        \ set norelativenumber
+augroup END
 
 " ---------------------------------------------------------------------------
 " Indentation
@@ -39,7 +97,12 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 set autoindent
-set smartindent
+
+augroup filetype_indent
+    autocmd!
+    autocmd FileType yaml,helm,terraform
+        \ setlocal tabstop=2 shiftwidth=2 softtabstop=2
+augroup END
 
 " ---------------------------------------------------------------------------
 " Search
@@ -47,34 +110,63 @@ set smartindent
 
 set ignorecase
 set smartcase
-set incsearch
 set hlsearch
 
-" Clear search highlighting with Esc.
-nnoremap <Esc> :nohlsearch<CR>
+" Clear search highlighting.
+nnoremap <silent> <leader><space> :nohlsearch<CR>
+
+" ---------------------------------------------------------------------------
+" Project
+" ---------------------------------------------------------------------------
+
+" :grep uses ripgrep. Results land in the quickfix list: :copen, ]q / [q, and
+" :cdo / :cfdo for project-wide edits.
+if executable('rg')
+    set grepprg=rg\ --vimgrep\ --smart-case
+    set grepformat=%f:%l:%c:%m
+endif
+
+" :find <partial name> searches the project; tags enable <C-]> without LSP
+" (generate them with: ctags -R .).
+set path+=**
+set wildignore+=*/.git/*,*/node_modules/*,*/vendor/*,*/.terraform/*
+set tags=./tags;,tags
 
 " ---------------------------------------------------------------------------
 " Files
 " ---------------------------------------------------------------------------
 
-set backup
-set backupdir=$HOME/.vim/backup//
+" No backup files: they are plaintext copies of everything you edit, secrets
+" included. Persistent undo and swap files live in ~/.vim, which is private.
+set nobackup
 set directory=$HOME/.vim/swap//
 set undofile
 set undodir=$HOME/.vim/undo//
 
-" Create required directories automatically.
-if !isdirectory(expand('~/.vim/backup'))
-    call mkdir(expand('~/.vim/backup'), 'p')
-endif
+for s:dir in ['swap', 'undo']
+    if !isdirectory(expand('~/.vim/' . s:dir))
+        call mkdir(expand('~/.vim/' . s:dir), 'p', 0700)
+    endif
+endfor
 
-if !isdirectory(expand('~/.vim/swap'))
-    call mkdir(expand('~/.vim/swap'), 'p')
-endif
+" Never write swap, backup, undo or viminfo data for files that are likely to
+" hold secrets, or that are temporary copies of them (kubectl edit,
+" ansible-vault edit, sudoedit, crontab -e, ...).
+function! s:ProtectSecrets() abort
+    setlocal noswapfile nobackup nowritebackup noundofile
+    set viminfo=
+endfunction
 
-if !isdirectory(expand('~/.vim/undo'))
-    call mkdir(expand('~/.vim/undo'), 'p')
-endif
+augroup protect_secrets
+    autocmd!
+    autocmd BufNewFile,BufReadPre
+        \ */.ssh/*,*/.aws/*,*/.kube/*,*/.gnupg/*,*/.docker/config.json,
+        \*.env,*/.env.*,*/.envrc,*.tfvars,*.tfstate,*.tfstate.*,
+        \*.pem,*.key,*.p12,*vault*,*secret*,*Secret*,
+        \/tmp/*,/var/tmp/*,/private/tmp/*,/private/var/folders/*,/dev/shm/*,
+        \/run/user/*,/etc/*,/private/etc/*
+        \ call s:ProtectSecrets()
+augroup END
 
 " ---------------------------------------------------------------------------
 " Clipboard
@@ -90,19 +182,25 @@ endif
 
 set completeopt=menu,menuone,noselect
 set wildmode=longest:full,full
+silent! set wildoptions=pum
 
 " ---------------------------------------------------------------------------
 " Misc
 " ---------------------------------------------------------------------------
 
 set mouse=a
-set ttyfast
 
-" Keep line numbers relative in normal mode and absolute in insert mode.
-augroup numbertoggle
-    autocmd!
-    autocmd BufEnter,FocusGained,InsertLeave,WinEnter *
-        \ set relativenumber
-    autocmd BufLeave,FocusLost,InsertEnter,WinLeave *
-        \ set norelativenumber
-augroup END
+" Optional packages bundled with Vim; each is skipped silently when the
+" installed Vim is too old to ship it.
+silent! packadd matchit
+silent! packadd comment
+silent! packadd editorconfig
+silent! packadd cfilter
+
+" ---------------------------------------------------------------------------
+" IDE layer
+" ---------------------------------------------------------------------------
+
+if filereadable(expand('~/.vim/ide.vim'))
+    source ~/.vim/ide.vim
+endif

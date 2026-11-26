@@ -134,6 +134,25 @@ install_macos_packages() {
     success "Homebrew bundle complete"
 }
 
+# Language servers that Homebrew doesn't package.
+install_macos_language_servers() {
+    log "Installing language servers"
+
+    if [[ "$DRY_RUN" == true ]]; then
+        printf '· Would run: npm install --global intelephense\n'
+        return
+    fi
+
+    if ! command -v npm >/dev/null 2>&1; then
+        error "npm not found, skipping intelephense"
+        return
+    fi
+
+    npm install --global intelephense
+
+    success "intelephense installed"
+}
+
 install_ubuntu_packages() {
     local packages=(
         zsh
@@ -149,6 +168,7 @@ install_ubuntu_packages() {
         git
         tmux
         vim
+        universal-ctags
     )
 
     log "Installing Ubuntu packages"
@@ -166,6 +186,7 @@ install_ubuntu_packages() {
 
 if [[ "$PLATFORM" == "macos" ]]; then
     install_macos_packages
+    install_macos_language_servers
 else
     install_ubuntu_packages
 fi
@@ -233,6 +254,10 @@ link_config \
     "$DOTFILES_DIR/config/vim/vimrc" \
     "$HOME/.vimrc"
 
+link_config \
+    "$DOTFILES_DIR/config/vim/ide.vim" \
+    "$HOME/.vim/ide.vim"
+
 if [[ "$PLATFORM" == "macos" ]]; then
     link_config \
         "$DOTFILES_DIR/config/ghostty/config.ghostty" \
@@ -246,6 +271,16 @@ if [[ "$PLATFORM" == "macos" ]]; then
         "$DOTFILES_DIR/config/zed/keymap.json" \
         "$HOME/.config/zed/keymap.json"
 
+fi
+
+# ---------------------------------------------------------------------------
+# Vim plugins
+# ---------------------------------------------------------------------------
+
+if [[ "$DRY_RUN" == true ]]; then
+    "$DOTFILES_DIR/config/vim/install-plugins.sh" --dry-run
+else
+    "$DOTFILES_DIR/config/vim/install-plugins.sh"
 fi
 
 # ---------------------------------------------------------------------------

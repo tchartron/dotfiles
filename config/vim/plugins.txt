@@ -1,0 +1,38 @@
+# Vim plugins, installed by config/vim/install-plugins.sh (called by bootstrap.sh).
+#
+# Format:  <group>  <github user/repo>  <pinned commit>
+#
+# Groups:
+#   core  installed everywhere bootstrap runs (macOS and Ubuntu)
+#   ide   installed on macOS only (needs language servers and linters)
+#
+# Plugins are cloned into ~/.vim/pack/plugins/start/ (native Vim packages, no
+# plugin manager). To update one, bump its commit here and re-run
+# install-plugins.sh. Latest commit of a repo:
+#
+#     git ls-remote https://github.com/<user>/<repo>.git HEAD
+
+# Files and search
+core  junegunn/fzf             ed173e71e44b2a5fa6264ecf232a153dee6994d0
+core  junegunn/fzf.vim         fe5f1fd45418c1a4d905f44a59357008058cc789
+
+# Git
+core  tpope/vim-fugitive       3b753cf8c6a4dcde6edee8827d464ba9b8c4a6f0
+core  airblade/vim-gitgutter   90b75207bd9b55d8ac4af15f72b4e935462014d0
+
+# Editing
+core  tpope/vim-surround       3d188ed2113431cf8dac77be61b842acb64433d9
+core  tpope/vim-repeat         65846025c15494983dafe5e3b46c8f88ab2e9635
+core  tpope/vim-unimpaired     db65482581a28e4ccf355be297f1864a4e66985c
+core  tpope/vim-vinegar        bb1bcddf43cfebe05eb565a84ab069b357d0b3d6
+
+# Appearance
+core  morhetz/gruvbox          ef8864bb42bf244f0295d1c5a403b27e3d139695
+
+# Filetypes
+core  towolf/vim-helm          2c8525fd98e57472769d137317bca83e477858ce
+core  pearofducks/ansible-vim  6c42a448e30bc48ae98792bce38970148b0e3c9d
+core  hashivim/vim-terraform   520498fab16a3a11f2ae1b8cb65e0a1684bc317a
+
+# Linting, formatting and LSP (completion, definitions, hover, rename)
+ide   dense-analysis/ale       422c0e8ef42e2315a5b58dc281fccc59b816c37a

@@ -28,6 +28,18 @@ brew "k9s"
 brew "hashicorp/tap/terraform"
 brew "ansible"
 
+# Editor tooling (used by Vim: tags, linters and language servers for ALE)
+brew "node"
+brew "universal-ctags"
+brew "shellcheck"
+brew "hadolint"
+brew "yamllint"
+brew "ansible-lint"
+brew "prettier"
+brew "terraform-ls"
+brew "bash-language-server"
+brew "vscode-langservers-extracted"
+
 # Applications
 cask "ghostty"
 cask "zed"
