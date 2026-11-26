@@ -7,6 +7,7 @@
 "
 " Leader is <Space>. Muscle memory that exists only on this layer:
 "
+"   <leader>e   explorer sidebar
 "   <leader>f   files            <leader>b   buffers        -    parent directory
 "   <leader>a   files, ignored too (vendor/)
 "   <leader>/   live ripgrep     <leader>?   same, ignoring .gitignore (vendor/)
@@ -77,6 +78,21 @@ if s:has('fzf') && s:has('fzf.vim') && executable('fzf')
     command! -bang -nargs=? -complete=dir FilesAll
     \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'source':
     \ 'rg --files --no-ignore --hidden --glob "!.git"'}), <bang>0)
+
+    " In the explorer sidebar the finders run from the previous window, so
+    " the chosen file opens next to the tree instead of replacing it.
+    function! s:ExplorerFinders() abort
+        for [l:key, l:cmd] in [['f', 'Files'], ['a', 'FilesAll'], ['b', 'Buffers'],
+        \                      ['H', 'History'], ['/', 'RG'], ['?', 'RGAll']]
+            execute 'nnoremap <buffer> <silent> <leader>' . l:key
+            \ . ' :wincmd p<Bar>' . l:cmd . '<CR>'
+        endfor
+    endfunction
+
+    augroup fzf_in_explorer
+        autocmd!
+        autocmd FileType netrw call s:ExplorerFinders()
+    augroup END
 
     nnoremap <leader>f :Files<CR>
     nnoremap <leader>a :FilesAll<CR>

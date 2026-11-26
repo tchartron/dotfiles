@@ -133,6 +133,42 @@ Two layers:
 
 **Leader key: `Space`.** Vim 8.1+ is required for the plugin layer.
 
+### Quick reference
+
+Every custom key in one place (details in the sections below). `<Space>` is the
+leader. On a server without the plugin layer, only the stock Vim keys work.
+
+| Keys | Action |
+| --- | --- |
+| `<Space>f` | Find a file by name |
+| `<Space>a` | Same, including ignored files (`vendor/`) |
+| `<Space>/` | Search text in the whole project, live |
+| `<Space>?` | Same, including ignored files |
+| `<Space>*` | Search the word under the cursor |
+| `<Space>s` | Jump to a class or function by name |
+| `<Space>o` | Outline of the current file |
+| `<Space>b` | Open buffers |
+| `<Space>H` | Recently opened files |
+| `<Space>e` | Toggle the file explorer sidebar |
+| `-` | Parent directory (vinegar) |
+| `<Space>m` | Preview the Markdown file, rendered |
+| `gd` | **Go to definition** (where the function, class or variable is defined). `Ctrl-O` goes back |
+| `gr` | Find every reference |
+| `K` | Show the documentation under the cursor |
+| `<Space>rn` / `<Space>ca` | Rename / code actions |
+| `<Space>d` | Full error message |
+| `]d` / `[d` | Next / previous error |
+| `<Space>F` | Fix and format the file now |
+| `<Space>gs` `gd` `gb` `gl` | Git status / diff / blame / log |
+| `]c` / `[c` | Next / previous changed hunk |
+| `<Space>hs` `hp` `hu` | Stage / preview / undo a hunk |
+| `:Rename` `:Delete` `:Mkdir` `:SudoWrite` | File operations (vim-eunuch) |
+| `<Space><Space>` | Clear search highlighting |
+
+`gd` is stock Vim too, but there it only jumps to the local declaration of a
+variable. With the language server on macOS it follows the symbol across files
+(for PHP, through Intelephense), so it works on classes, methods and functions.
+
 ### Find and open (fzf + ripgrep)
 
 | Keys | Action |
@@ -146,6 +182,7 @@ Two layers:
 | `<Space>H` | Recently opened files |
 | `<Space>o` | Outline of the current file (functions, classes, via ctags) |
 | `<Space>s` | **Symbol search**: type a class or function name across the whole project, `Enter` |
+| `<Space>e` | Toggle the **file explorer sidebar** (tree view) |
 | `-` | Open the parent directory (vinegar). `-` again goes up |
 | `<Space><Space>` | Clear search highlighting |
 | `<Space>m` | **Preview the Markdown file** (see below) |
@@ -158,6 +195,28 @@ Other fzf commands (type them with `:`): `:GFiles` (tracked files), `:GFiles?`
 (changed files), `:Lines`, `:BLines` (search lines in all / this buffer),
 `:Tags`, `:BTags`, `:Marks`, `:Commits`, `:BCommits`, `:Commands`, `:Maps`,
 `:Helptags`, `:Filetypes`, `:Windows`.
+
+### File explorer
+
+`<Space>e` toggles a tree sidebar on the left (netrw, bundled with Vim, so it
+works on any server). Files open in the window you came from and the tree stays
+put.
+
+| Key (in the sidebar) | Action |
+| --- | --- |
+| `<CR>` | Open the file, or expand / collapse the folder |
+| `<Space>f` | **Fuzzy go to file** (whole project); the file opens next to the tree |
+| `<Space>a` `<Space>/` `<Space>?` `<Space>b` `<Space>H` | The other finders, also opening next to the tree |
+| `%` | New file |
+| `d` | New directory |
+| `R` | Rename |
+| `D` | Delete |
+| `gh` | Show / hide dotfiles (vinegar) |
+| `-` | Go up one directory |
+| `?` | List every explorer key |
+
+A habit that scales to big projects: use `<Space>f` or `<Space>/` to get
+somewhere fast, and the sidebar only to orient yourself or manage files.
 
 ### Project-wide refactors with the quickfix list
 
@@ -279,18 +338,72 @@ tags and keywords), `comment` (`gc` / `gcc` toggle comments), `editorconfig`,
 - **Tools:** `:grep` uses ripgrep; `vendor`, `node_modules`, `.git` and
   `.terraform` are excluded from file-name completion.
 
-### Vim habits worth building
+### Vim guide: features worth knowing
 
-These are stock Vim, so they work on every server:
+All stock Vim, so every key below also works on a server.
 
-- `Ctrl-^` toggles between the last two files (the single most useful key).
-- `Ctrl-O` / `Ctrl-I` walk the jump history; `''` returns to the last position.
+**Move fast**
+- `w` `b` `e` move by word, `0` `^` `$` to start / first character / end of line,
+  `gg` `G` to top / bottom, `{` `}` by paragraph, `%` to the matching bracket.
+- `f,` jumps to the next `,` on the line (`;` repeats, `t,` stops before it).
+- `Ctrl-D` / `Ctrl-U` half a page down / up; `zz` centers the cursor line.
+- `Ctrl-O` / `Ctrl-I` walk the jump history (also after `gd`); `''` returns to the
+  last position; `Ctrl-^` toggles between the last two files.
 - `gf` opens the file under the cursor; `*` and `#` search the word under it.
-- Text objects: `ci"`, `ci(`, `dit`, `yap`, `vi{`; `.` repeats the last change;
-  `cgn` then `.` replaces matches one by one.
-- Macros `qa` ... `q`, replay with `@a`; marks `ma`, jump with `'a`.
-- `:g/pattern/d`, `:g/pattern/norm A;` run a command on every matching line.
-- `:cdo` / `:argdo` for edits across files.
+
+**Edit in the language of Vim: verb + object**
+- Verbs: `d` delete, `c` change, `y` yank, `v` select. Objects: `iw` word,
+  `i"` inside quotes, `i(` inside parentheses, `it` inside an HTML tag, `ap`
+  paragraph. Combine them: `ci"`, `dit`, `yap`, `vi{`.
+- `.` repeats the last change. `cgn` on a search match, then `.` replaces
+  matches one by one.
+- `A` append at end of line, `I` insert at start, `o` / `O` new line below /
+  above, `J` joins lines, `>>` / `<<` indent, `~` flips case.
+- In insert mode: `Ctrl-W` deletes a word, `Ctrl-R "` pastes the last yank.
+
+**Visual mode**
+- `v` characters, `V` whole lines, `Ctrl-V` a rectangular block. `gv` reselects the
+  last selection.
+- Block edit: `Ctrl-V`, move down, `I` or `A`, type, `Esc` applies it to every
+  line (add a comment or a prefix to many lines at once).
+
+**Registers (important with the shared clipboard)**
+Yanks and deletes both go to the system clipboard here, so a delete replaces
+what you copied. Use:
+- `"0p` pastes the last **yank**, even after a delete.
+- `"_d` deletes without touching any register or the clipboard.
+- `"ayy` yanks into register `a`, `"ap` pastes it; `:reg` lists them all.
+
+**Windows and buffers**
+- `:vsplit file` / `:split file`, `Ctrl-W h j k l` to move, `Ctrl-W =` to equalize,
+  `Ctrl-W o` to keep only the current window. Use tmux panes for terminals and
+  Vim splits to see two files side by side.
+- `:ls` lists buffers, `]b` / `[b` switch, `:bd` closes one, `<Space>b` fuzzy picks.
+
+**Undo and redo**
+- `u` undo, `Ctrl-R` redo, `U` undo all changes on a line. Undo is persistent: it
+  survives closing the file.
+- `g-` / `g+` move through undo history; `:earlier 10m` goes back ten minutes.
+
+**Search and replace**
+- `/text` search, `n` / `N` next / previous. `:%s/old/new/gc` replaces in the
+  whole file and asks each time; drop the `c` to replace silently.
+- `:g/pattern/d` deletes every matching line; `:g/pattern/norm A;` runs a normal
+  command on every matching line. `:v/pattern/d` keeps only matches.
+- `:cdo` / `:argdo` run a command over the quickfix list or the argument list
+  (see "Project-wide refactors" above).
+
+**Macros and marks**
+- `qa` ... `q` records a macro in register `a`, `@a` replays it, `@@` repeats
+  it, `5@a` runs it five times. A macro is the fastest way to reshape repeated lines.
+- `ma` sets mark `a`, `'a` jumps back to it (capital letters work across files).
+
+**Handy commands**
+- `:w !sudo tee %` or `:SudoWrite` saves a root-owned file. `:e!` reverts the file
+  to the last save. `:set paste` before pasting into a plain terminal Vim.
+- `:help topic` (and `Ctrl-]` on a link, `Ctrl-O` back) is the best manual
+  there is; `:help index` lists every key.
+- `vimtutor` in a terminal is a 30-minute interactive course.
 
 ---
 
