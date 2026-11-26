@@ -8,13 +8,18 @@
 " Leader is <Space>. Muscle memory that exists only on this layer:
 "
 "   <leader>f   files            <leader>b   buffers        -    parent directory
-"   <leader>/   ripgrep          <leader>h   recent files
+"   <leader>a   files, ignored too (vendor/)
+"   <leader>/   live ripgrep     <leader>?   same, ignoring .gitignore (vendor/)
+"   <leader>*   grep word        <leader>H   recent files   <leader>o   outline (tags)
 "   <leader>gs  git status       <leader>gb  git blame      <leader>gd  git diff
 "   <leader>gl  git log          ]c / [c     next/prev hunk
+"   <leader>hs / hp / hu   stage / preview / undo hunk (gitgutter)
 "
 "   LSP / ALE (macOS only):
 "   gd          definition       gr          references     K           hover
-"   <leader>rn  rename           <leader>ca  code action    <leader>d   error detail
+"   <leader>s   symbol search (class / function by name, then <CR>)
+"   <leader>rn  rename (Intelephense needs a licence for PHP: use :Rg + :cdo)
+"   <leader>ca  code action      <leader>d   error detail
 "   ]d / [d     next/prev diagnostic                        <leader>F   fix (prettier)
 "   <Tab>       pick next completion item, <CR> accepts it
 "
@@ -48,10 +53,36 @@ if s:has('fzf') && s:has('fzf.vim') && executable('fzf')
         let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --glob "!.git"'
     endif
 
+    " Live ripgrep: the search is re-run on every keystroke. (:Rg with an
+    " empty pattern would list every line of a big repository.) Select several
+    " results with <Tab> and press <CR> to send them to the quickfix list,
+    " then use :cdo / :cfdo for project-wide edits.
+    function! s:RipgrepFzf(flags, query, fullscreen) abort
+        let l:cmd = 'rg --column --line-number --no-heading --color=always --smart-case '
+        \ . a:flags . ' -- %s || true'
+        let l:initial = a:query ==# '' ? 'true' : printf(l:cmd, shellescape(a:query))
+        let l:reload = printf(l:cmd, '{q}')
+        let l:spec = {'options': ['--phony', '--query', a:query,
+        \ '--bind', 'change:reload:' . l:reload]}
+
+        call fzf#vim#grep(l:initial, 1, fzf#vim#with_preview(l:spec), a:fullscreen)
+    endfunction
+
+    command! -nargs=* -bang RG call s:RipgrepFzf('', <q-args>, <bang>0)
+    command! -nargs=* -bang RGAll call s:RipgrepFzf('--no-ignore --hidden --glob "!.git"', <q-args>, <bang>0)
+
+    " Same as :Files but also lists ignored files (vendor/, node_modules/).
+    command! -bang -nargs=? -complete=dir FilesAll
+    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'source':
+    \ 'rg --files --no-ignore --hidden --glob "!.git"'}), <bang>0)
+
     nnoremap <leader>f :Files<CR>
+    nnoremap <leader>a :FilesAll<CR>
     nnoremap <leader>b :Buffers<CR>
-    nnoremap <leader>h :History<CR>
-    nnoremap <leader>/ :Rg<CR>
+    nnoremap <leader>H :History<CR>
+    nnoremap <leader>o :BTags<CR>
+    nnoremap <leader>/ :RG<CR>
+    nnoremap <leader>? :RGAll<CR>
     nnoremap <leader>* :Rg <C-r><C-w><CR>
 endif
 
@@ -134,29 +165,38 @@ if s:has('ale')
     \   'ansible': ['ansible_lint'],
     \   'dockerfile': ['hadolint'],
     \   'sh': ['language_server'],
+    \   'go': ['gopls'],
     \}
 
-    " On save: trim whitespace, and run `terraform fmt` on Terraform. Prettier
+    " On save: trim whitespace only on files we own (shell,
+    " yaml, Dockerfile), `terraform fmt` on Terraform and gofmt on Go. PHP is
+    " left alone so legacy code doesn't get noisy whitespace diffs. Prettier
     " is available on demand (<leader>F) but never runs on save, so opening a
     " repo without a prettier config doesn't rewrite whole files.
+    let s:trim = ['remove_trailing_lines', 'trim_whitespace']
+
     let g:ale_fix_on_save = 1
     let g:ale_fix_on_save_ignore = ['prettier']
     let g:ale_fixers = {
-    \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-    \   'markdown': [],
+    \   'sh': s:trim,
+    \   'yaml': s:trim,
+    \   'dockerfile': s:trim,
     \   'terraform': ['terraform'],
-    \   'javascript': ['remove_trailing_lines', 'trim_whitespace', 'prettier'],
-    \   'typescript': ['remove_trailing_lines', 'trim_whitespace', 'prettier'],
-    \   'vue': ['remove_trailing_lines', 'trim_whitespace', 'prettier'],
-    \   'json': ['remove_trailing_lines', 'trim_whitespace', 'prettier'],
-    \   'css': ['remove_trailing_lines', 'trim_whitespace', 'prettier'],
-    \   'html': ['remove_trailing_lines', 'trim_whitespace', 'prettier'],
+    \   'go': ['gofmt'],
+    \   'javascript': s:trim + ['prettier'],
+    \   'typescript': s:trim + ['prettier'],
+    \   'vue': s:trim + ['prettier'],
+    \   'json': s:trim + ['prettier'],
+    \   'css': s:trim + ['prettier'],
+    \   'html': s:trim + ['prettier'],
     \}
 
     nmap gd <Plug>(ale_go_to_definition)
     nmap gr <Plug>(ale_find_references)
     nmap K <Plug>(ale_hover)
     nmap <leader>rn <Plug>(ale_rename)
+    " Workspace symbol search: type a class or function name, then <CR>.
+    nnoremap <leader>s :ALESymbolSearch -relative<Space>
     nmap <leader>ca <Plug>(ale_code_action)
     nmap <leader>d <Plug>(ale_detail)
     nmap <leader>F <Plug>(ale_fix)

@@ -176,6 +176,36 @@ if has('clipboard')
     set clipboard=unnamed,unnamedplus
 endif
 
+" Over SSH there is no system clipboard to reach. Send plain yanks to the
+" terminal as an OSC 52 sequence instead: Ghostty puts them on the Mac
+" clipboard, and tmux forwards them when `set-clipboard on` is set.
+" Local sessions are left alone.
+function! s:YankToTerminal() abort
+    if v:event.operator !=# 'y' || v:event.regname !=# '' || !exists('*echoraw')
+        return
+    endif
+
+    let l:text = join(v:event.regcontents, "\n")
+    if v:event.regtype ==# 'V'
+        let l:text .= "\n"
+    endif
+
+    " Terminals drop very large sequences.
+    if strlen(l:text) > 70000
+        return
+    endif
+
+    let l:b64 = substitute(system('base64 | tr -d "\n"', l:text), '\n', '', 'g')
+    call echoraw("\e]52;c;" . l:b64 . "\x07")
+endfunction
+
+if $SSH_TTY !=# '' && executable('base64')
+    augroup yank_to_terminal
+        autocmd!
+        autocmd TextYankPost * call s:YankToTerminal()
+    augroup END
+endif
+
 " ---------------------------------------------------------------------------
 " Completion
 " ---------------------------------------------------------------------------

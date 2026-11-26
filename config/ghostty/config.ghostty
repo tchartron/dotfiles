@@ -10,7 +10,8 @@ theme = Gruvbox Dark
 # Font
 # ---------------------------------------------------------------------------
 
-font-family = Operator Mono
+# Nerd Font variant: provides the icons used by starship and tmux.
+font-family = Maple Mono NF
 font-size = 13
 font-thicken = false
 
@@ -43,15 +44,26 @@ cursor-click-to-move = true
 # ---------------------------------------------------------------------------
 
 shell-integration = detect
-shell-integration-features = cursor,sudo,title
+# ssh-env / ssh-terminfo make xterm-ghostty work on servers that don't know it.
+shell-integration-features = cursor,sudo,title,ssh-env,ssh-terminfo
 
 # ---------------------------------------------------------------------------
 # Clipboard
 # ---------------------------------------------------------------------------
 
-clipboard-read = allow
+# Writes let Vim and tmux yank over SSH. Reads stay on "ask": with "allow",
+# any program, including one on a remote server, could read your clipboard.
+clipboard-read = ask
 clipboard-write = allow
 copy-on-select = clipboard
+
+# ---------------------------------------------------------------------------
+# Keyboard
+# ---------------------------------------------------------------------------
+
+# Left Option acts as Alt (Alt-b / Alt-f in zsh, Vim, tmux). Right Option stays
+# available for AZERTY characters such as { [ | ~.
+macos-option-as-alt = left
 
 # ---------------------------------------------------------------------------
 # Mouse

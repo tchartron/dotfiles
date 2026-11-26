@@ -1,6 +1,12 @@
 # ~/.config/starship.toml
+#
+# Gruvbox dark, one rounded segment per module. Each segment draws its own
+# caps, so it can appear or disappear without breaking its neighbours.
+# Needs a Nerd Font (Maple Mono NF, see the Brewfile). Local macOS only:
+# the Ubuntu servers keep the plain zsh prompt.
 
 add_newline = true
+palette = "gruvbox_dark"
 
 format = """
 $directory\
@@ -9,29 +15,43 @@ $git_status\
 $kubernetes\
 $docker_context\
 $status\
-$character
-"""
+$line_break\
+$character"""
+
+[palettes.gruvbox_dark]
+bg0 = "#282828"
+fg1 = "#ebdbb2"
+red = "#cc241d"
+green = "#98971a"
+yellow = "#d79921"
+blue = "#458588"
+aqua = "#689d6a"
+orange = "#d65d0e"
 
 # ---------------------------------------------------------------------------
 # Directory
 # ---------------------------------------------------------------------------
 
 [directory]
-style = "bold blue"
-truncation_length = 3
+format = "[](fg:yellow)[ $path$read_only ](fg:bg0 bg:yellow bold)[](fg:yellow) "
+# Keep the ~ visible for most paths, and mark a cut path with …/ so it is
+# clear that parent directories are hidden.
+truncation_length = 4
+truncation_symbol = "…/"
 truncate_to_repo = false
+read_only = " "
 
 # ---------------------------------------------------------------------------
 # Git
 # ---------------------------------------------------------------------------
 
 [git_branch]
-format = " [$branch]($style)"
-style = "bold purple"
+format = "[](fg:green)[ $symbol$branch ](fg:bg0 bg:green bold)[](fg:green) "
+symbol = " "
 
 [git_status]
-format = " [$all_status$ahead_behind]($style)"
-style = "yellow"
+# The outer ( ) hides the whole pill (caps included) when the repo is clean.
+format = "([](fg:orange)[ $all_status$ahead_behind ](fg:bg0 bg:orange bold)[](fg:orange) )"
 conflicted = "!"
 ahead = "⇡${count}"
 behind = "⇣${count}"
@@ -46,10 +66,10 @@ deleted = "✘"
 # Kubernetes
 # ---------------------------------------------------------------------------
 
+# Only shown in Kubernetes projects (not on every prompt).
 [kubernetes]
 disabled = false
-format = " ⎈ [$context]($style)[$namespace](dimmed green)"
-style = "cyan"
+format = "[](fg:blue)[ 󱃾 $context( \\($namespace\\)) ](fg:fg1 bg:blue bold)[](fg:blue) "
 detect_extensions = []
 detect_files = [
     "kustomization.yaml",
@@ -71,8 +91,7 @@ detect_folders = [
 # ---------------------------------------------------------------------------
 
 [docker_context]
-format = " 🐳 [$context]($style)"
-style = "blue"
+format = "[](fg:aqua)[ 󰡨 $context ](fg:bg0 bg:aqua bold)[](fg:aqua) "
 only_with_files = true
 detect_files = [
     "docker-compose.yml",
@@ -88,8 +107,7 @@ detect_files = [
 
 [status]
 disabled = false
-format = " [$symbol$status]($style)"
-style = "bold red"
+format = "[](fg:red)[ $symbol$status ](fg:fg1 bg:red bold)[](fg:red) "
 symbol = "✘ "
 success_symbol = ""
 recognize_signal_code = true
@@ -99,6 +117,6 @@ recognize_signal_code = true
 # ---------------------------------------------------------------------------
 
 [character]
-success_symbol = " [❯](bold green)"
-error_symbol = " [❯](bold red)"
-vimcmd_symbol = " [❮](bold yellow)"
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+vimcmd_symbol = "[❮](bold yellow)"

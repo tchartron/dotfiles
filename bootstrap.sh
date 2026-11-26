@@ -76,6 +76,92 @@ else
 fi
 
 # ---------------------------------------------------------------------------
+# Configuration
+# ---------------------------------------------------------------------------
+
+# Linking comes first so a failing package install never leaves the machine
+# half configured. Every link is checked before the first one is created: on a
+# conflict nothing is changed.
+
+LINKS=()
+
+add_link() {
+    LINKS+=("$1|$2")
+}
+
+add_link "$DOTFILES_DIR/config/zsh/zshenv" "$HOME/.zshenv"
+add_link "$DOTFILES_DIR/config/zsh/zprofile" "$HOME/.zprofile"
+add_link "$DOTFILES_DIR/config/zsh/zshrc" "$HOME/.zshrc"
+add_link "$DOTFILES_DIR/config/starship/starship.toml" "$HOME/.config/starship.toml"
+add_link "$DOTFILES_DIR/config/tmux/tmux.conf" "$HOME/.tmux.conf"
+add_link "$DOTFILES_DIR/config/git/config" "$HOME/.config/git/config"
+add_link "$DOTFILES_DIR/config/vim/vimrc" "$HOME/.vimrc"
+add_link "$DOTFILES_DIR/config/vim/ide.vim" "$HOME/.vim/ide.vim"
+
+if [[ "$PLATFORM" == "macos" ]]; then
+    add_link "$DOTFILES_DIR/config/ghostty/config.ghostty" "$HOME/.config/ghostty/config.ghostty"
+    add_link "$DOTFILES_DIR/config/zed/settings.json" "$HOME/.config/zed/settings.json"
+    add_link "$DOTFILES_DIR/config/zed/keymap.json" "$HOME/.config/zed/keymap.json"
+fi
+
+preflight_links() {
+    local entry source destination target
+    local problems=0
+
+    for entry in "${LINKS[@]}"; do
+        source="${entry%%|*}"
+        destination="${entry#*|}"
+
+        if [[ ! -e "$source" ]]; then
+            error "Missing source file: $source"
+            problems=1
+        elif [[ -L "$destination" ]]; then
+            target="$(readlink "$destination")"
+
+            if [[ "$target" != "$source" ]]; then
+                error "$destination already points to: $target"
+                problems=1
+            fi
+        elif [[ -e "$destination" ]]; then
+            error "$destination already exists and is not managed by dotfiles"
+            problems=1
+        fi
+    done
+
+    if (( problems != 0 )); then
+        abort "Nothing was changed. Resolve the conflicts above and run again."
+    fi
+}
+
+link_config() {
+    local source="$1"
+    local destination="$2"
+
+    if [[ -L "$destination" ]]; then
+        success "$destination"
+        return
+    fi
+
+    if [[ "$DRY_RUN" == true ]]; then
+        printf '· Would link %s → %s\n' "$destination" "$source"
+        return
+    fi
+
+    mkdir -p "$(dirname "$destination")"
+    ln -s "$source" "$destination"
+
+    success "$destination"
+}
+
+log "Linking configuration"
+
+preflight_links
+
+for entry in "${LINKS[@]}"; do
+    link_config "${entry%%|*}" "${entry#*|}"
+done
+
+# ---------------------------------------------------------------------------
 # Homebrew
 # ---------------------------------------------------------------------------
 
@@ -123,23 +209,28 @@ install_macos_packages() {
     log "Installing Homebrew packages"
 
     if [[ "$DRY_RUN" == true ]]; then
-        printf '· Would run: brew bundle --file="%s"\n' "$DOTFILES_DIR/Brewfile"
+        printf '· Would run: brew bundle --no-upgrade --file="%s"\n' "$DOTFILES_DIR/Brewfile"
         return
     fi
 
     brew trust --formula hashicorp/tap/terraform
 
-    "$BREW" bundle --file="$DOTFILES_DIR/Brewfile"
+    # --no-upgrade: install what is missing, never bump terraform, kubectl or
+    # helm behind your back. Upgrade on purpose with `brew upgrade`.
+    "$BREW" bundle --no-upgrade --file="$DOTFILES_DIR/Brewfile"
 
     success "Homebrew bundle complete"
 }
 
-# Language servers that Homebrew doesn't package.
+# Language servers that Homebrew doesn't package. Pinned, like the Vim plugins:
+# bump the version here on purpose.
+INTELEPHENSE_VERSION="1.18.5"
+
 install_macos_language_servers() {
     log "Installing language servers"
 
     if [[ "$DRY_RUN" == true ]]; then
-        printf '· Would run: npm install --global intelephense\n'
+        printf '· Would run: npm install --global intelephense@%s\n' "$INTELEPHENSE_VERSION"
         return
     fi
 
@@ -148,15 +239,16 @@ install_macos_language_servers() {
         return
     fi
 
-    npm install --global intelephense
+    npm install --global "intelephense@$INTELEPHENSE_VERSION"
 
-    success "intelephense installed"
+    success "intelephense $INTELEPHENSE_VERSION installed"
 }
 
 install_ubuntu_packages() {
+    # No starship (not packaged for current LTS releases: servers keep the
+    # plain zsh prompt) and no yq (apt ships a different tool than Homebrew).
     local packages=(
         zsh
-        starship
         fzf
         zoxide
         direnv
@@ -164,7 +256,6 @@ install_ubuntu_packages() {
         fd-find
         bat
         jq
-        yq
         git
         tmux
         vim
@@ -189,88 +280,6 @@ if [[ "$PLATFORM" == "macos" ]]; then
     install_macos_language_servers
 else
     install_ubuntu_packages
-fi
-
-# ---------------------------------------------------------------------------
-# Configuration
-# ---------------------------------------------------------------------------
-
-link_config() {
-    local source="$1"
-    local destination="$2"
-
-    [[ -e "$source" ]] || abort "Missing source file: $source"
-
-    if [[ -L "$destination" ]]; then
-        local target
-        target="$(readlink "$destination")"
-
-        if [[ "$target" == "$source" ]]; then
-            success "$destination"
-            return
-        fi
-
-        abort "$destination already points to: $target"
-    fi
-
-    if [[ -e "$destination" ]]; then
-        abort "$destination already exists and is not managed by dotfiles"
-    fi
-
-    if [[ "$DRY_RUN" == true ]]; then
-        printf '· Would link %s → %s\n' "$destination" "$source"
-        return
-    fi
-
-    mkdir -p "$(dirname "$destination")"
-    ln -s "$source" "$destination"
-
-    success "$destination"
-}
-
-log "Linking configuration"
-
-link_config \
-    "$DOTFILES_DIR/config/zsh/zshenv" \
-    "$HOME/.zshenv"
-
-link_config \
-    "$DOTFILES_DIR/config/zsh/zprofile" \
-    "$HOME/.zprofile"
-
-link_config \
-    "$DOTFILES_DIR/config/zsh/zshrc" \
-    "$HOME/.zshrc"
-
-link_config \
-    "$DOTFILES_DIR/config/starship/starship.toml" \
-    "$HOME/.config/starship.toml"
-
-link_config \
-    "$DOTFILES_DIR/config/tmux/tmux.conf" \
-    "$HOME/.tmux.conf"
-
-link_config \
-    "$DOTFILES_DIR/config/vim/vimrc" \
-    "$HOME/.vimrc"
-
-link_config \
-    "$DOTFILES_DIR/config/vim/ide.vim" \
-    "$HOME/.vim/ide.vim"
-
-if [[ "$PLATFORM" == "macos" ]]; then
-    link_config \
-        "$DOTFILES_DIR/config/ghostty/config.ghostty" \
-        "$HOME/.config/ghostty/config.ghostty"
-
-    link_config \
-        "$DOTFILES_DIR/config/zed/settings.json" \
-        "$HOME/.config/zed/settings.json"
-
-    link_config \
-        "$DOTFILES_DIR/config/zed/keymap.json" \
-        "$HOME/.config/zed/keymap.json"
-
 fi
 
 # ---------------------------------------------------------------------------

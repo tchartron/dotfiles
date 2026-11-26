@@ -1,11 +1,18 @@
 # ~/.zprofile
 
+# No duplicate PATH entries.
+typeset -U path PATH
+
 # Homebrew
 if [[ -x /opt/homebrew/bin/brew ]]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
 elif [[ -x /home/linuxbrew/.linuxbrew/bin/brew ]]; then
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
+
+# Keep ~/.local/bin first: macOS path_helper (/etc/zprofile) reorders PATH
+# after zshenv has run.
+path=("$HOME/.local/bin" $path)
 
 # Added by OrbStack: command-line tools and integration
 # This won't be added again if you remove it.

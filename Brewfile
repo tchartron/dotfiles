@@ -30,6 +30,8 @@ brew "ansible"
 
 # Editor tooling (used by Vim: tags, linters and language servers for ALE)
 brew "node"
+brew "go"
+brew "gopls"
 brew "universal-ctags"
 brew "shellcheck"
 brew "hadolint"
@@ -47,5 +49,5 @@ cask "orbstack"
 cask "vivaldi"
 
 # Font
-cask "font-maple-mono"
+cask "font-maple-mono-nf"
 cask "font-victor-mono"

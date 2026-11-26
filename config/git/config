@@ -1,0 +1,29 @@
+# ~/.config/git/config
+#
+# Shared defaults, linked by bootstrap.sh. Git reads this file together with
+# ~/.gitconfig, so identity (user.name, user.email) stays in ~/.gitconfig and
+# never lands in this repository.
+
+[core]
+	editor = vim
+
+[pull]
+	rebase = true
+
+[push]
+	autoSetupRemote = true
+
+[fetch]
+	prune = true
+
+[merge]
+	conflictStyle = diff3
+
+[diff]
+	algorithm = histogram
+
+[color "diff"]
+	meta = bold
+	frag = cyan
+	old = red
+	new = blue

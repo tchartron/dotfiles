@@ -5,8 +5,8 @@
 # ---------------------------------------------------------------------------
 
 HISTFILE="$HOME/.zsh_history"
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=50000
+SAVEHIST=50000
 
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_SPACE
@@ -24,14 +24,60 @@ compinit
 # Editing
 # ---------------------------------------------------------------------------
 
-bindkey -e
+# Vim keys at the prompt: Esc for normal mode, i/a to go back to insert.
+# (zsh would pick vi mode on its own because EDITOR=vim, so this is explicit.)
+bindkey -v
+KEYTIMEOUT=1
+
+# Insert mode keeps the usual macOS / bash / emacs line editing, so the
+# prompt still behaves like any other shell. Ctrl-R, Ctrl-T and Alt-C belong
+# to fzf (loaded below).
+bindkey -M viins '^A' beginning-of-line
+bindkey -M viins '^E' end-of-line
+bindkey -M viins '^B' backward-char
+bindkey -M viins '^F' forward-char
+bindkey -M viins '^K' kill-line
+bindkey -M viins '^U' backward-kill-line
+bindkey -M viins '^W' backward-kill-word
+bindkey -M viins '^Y' yank
+bindkey -M viins '^P' up-line-or-history
+bindkey -M viins '^N' down-line-or-history
+bindkey -M viins '^H' backward-delete-char
+bindkey -M viins '^?' backward-delete-char
+bindkey -M viins '^[b' backward-word
+bindkey -M viins '^[f' forward-word
+bindkey -M viins '^[d' kill-word
+bindkey -M viins '^[[3~' delete-char
+
+# Edit the current command line in $EDITOR: v in normal mode, or Ctrl-X Ctrl-E.
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd 'v' edit-command-line
+bindkey -M viins '^X^E' edit-command-line
+
+# Allow "# comment" lines when pasting commands.
+setopt INTERACTIVE_COMMENTS
 
 # ---------------------------------------------------------------------------
 # fzf
 # ---------------------------------------------------------------------------
 
+# Gruvbox colors for fzf (also used by fzf inside Vim).
+export FZF_DEFAULT_OPTS="--color=fg:#ebdbb2,bg+:#3c3836,fg+:#ebdbb2,hl:#fabd2f,hl+:#fabd2f,info:#8ec07c,prompt:#fb4934,pointer:#fb4934,marker:#fb4934,spinner:#fb4934,header:#928374"
+
 if command -v fzf >/dev/null 2>&1; then
-    source <(fzf --zsh)
+    autoload -Uz is-at-least
+
+    # `fzf --zsh` needs fzf 0.48+. Older packages (Ubuntu apt) ship the
+    # integration scripts instead.
+    if is-at-least 0.48 "${${(z)$(fzf --version)}[1]}"; then
+        source <(fzf --zsh)
+    else
+        for fzf_script in /usr/share/doc/fzf/examples/{key-bindings,completion}.zsh; do
+            [[ -r "$fzf_script" ]] && source "$fzf_script"
+        done
+        unset fzf_script
+    fi
 fi
 
 # ---------------------------------------------------------------------------
@@ -71,6 +117,12 @@ if ! command -v bat >/dev/null 2>&1 && command -v batcat >/dev/null 2>&1; then
 fi
 
 # ---------------------------------------------------------------------------
+# bat
+# ---------------------------------------------------------------------------
+
+export BAT_THEME="gruvbox-dark"
+
+# ---------------------------------------------------------------------------
 # Aliases
 # ---------------------------------------------------------------------------
 
@@ -85,5 +137,9 @@ alias glg='git log --oneline --decorate --graph'
 alias gltag="git describe --abbrev=0 --tags"
 
 alias t="tmux"
+alias ta='tmux new -As main'
 alias dk='docker'
 alias k='kubectl'
+
+# Completion for the k alias.
+(( $+commands[kubectl] )) && compdef k=kubectl

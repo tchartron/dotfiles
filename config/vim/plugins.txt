@@ -25,6 +25,7 @@ core  tpope/vim-surround       3d188ed2113431cf8dac77be61b842acb64433d9
 core  tpope/vim-repeat         65846025c15494983dafe5e3b46c8f88ab2e9635
 core  tpope/vim-unimpaired     db65482581a28e4ccf355be297f1864a4e66985c
 core  tpope/vim-vinegar        bb1bcddf43cfebe05eb565a84ab069b357d0b3d6
+core  tpope/vim-eunuch         929490937745cd96130d3e7948f762f0aa403314
 
 # Appearance
 core  morhetz/gruvbox          ef8864bb42bf244f0295d1c5a403b27e3d139695

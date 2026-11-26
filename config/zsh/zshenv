@@ -6,8 +6,11 @@
 export EDITOR="vim"
 export VISUAL="$EDITOR"
 
+# LANG only: LC_ALL overrides every locale category and warns on servers
+# where en_US.UTF-8 has not been generated.
 export LANG="en_US.UTF-8"
-export LC_ALL="en_US.UTF-8"
 
-# User-installed executables.
-export PATH="$HOME/.local/bin:$PATH"
+# User-installed executables, without duplicates (typeset -U).
+# macOS reorders PATH after this file (path_helper), so zprofile repeats it.
+typeset -U path PATH
+path=("$HOME/.local/bin" $path)
