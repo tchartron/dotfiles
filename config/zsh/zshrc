@@ -166,3 +166,6 @@ alias k='kubectl'
 
 # Completion for the k alias.
 (( $+commands[kubectl] )) && compdef k=kubectl
+
+export SOPS_AGE_KEY_FILE="$HOME/.config/sops/age/keys.txt"
+export KUBECONFIG="$HOME/Code/lab/homelab/kubeconfig"
