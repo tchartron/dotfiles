@@ -12,6 +12,7 @@ brew "fd"
 brew "bat"
 brew "jq"
 brew "yq"
+brew "glow"
 
 # Terminal
 brew "tmux"

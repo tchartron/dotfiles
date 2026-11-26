@@ -114,6 +114,7 @@ To uninstall, delete the symlinks listed in [Layout](#layout).
 | `config/starship/starship.toml` | `~/.config/starship.toml` | macOS |
 | `config/ghostty/config.ghostty` | `~/.config/ghostty/config.ghostty` | macOS |
 | `config/zed/settings.json`, `keymap.json` | `~/.config/zed/` | macOS |
+| `config/glow/gruvbox.json` | `~/.config/glow/gruvbox.json` | macOS |
 | `config/vim/plugins.txt` | read by `install-plugins.sh` | both |
 | `Brewfile` | read by `brew bundle` | macOS |
 
@@ -147,6 +148,7 @@ Two layers:
 | `<Space>s` | **Symbol search**: type a class or function name across the whole project, `Enter` |
 | `-` | Open the parent directory (vinegar). `-` again goes up |
 | `<Space><Space>` | Clear search highlighting |
+| `<Space>m` | **Preview the Markdown file** (see below) |
 
 Inside any fzf list: type to filter, `Ctrl-J/K` or arrows to move, `Enter` to
 open, `Ctrl-T` / `Ctrl-X` / `Ctrl-V` to open in a tab / split / vsplit, `Tab`
@@ -205,6 +207,21 @@ Prettier never runs on save, only with `<Space>F`. Project-local tools in
 PHP code runs in Docker for you, so phpstan and the tests are meant to run in
 a tmux pane inside the container, not through Vim. Intelephense reads the
 bind-mounted source on the host.
+
+### Markdown
+
+- **`<Space>m`** (in a `.md` buffer) saves the file and shows it **rendered**
+  with [glow](https://github.com/charmbracelet/glow): styled titles, bold and
+  italic text, lists, task lists, tables, quotes, links and syntax-highlighted
+  code blocks, in a scrollable pager. Inside tmux it opens in a **popup** over
+  Vim; elsewhere it takes the whole screen. `q` closes it and you are back in
+  Vim at the same place. Needs `glow` (macOS: in the Brewfile). The look comes
+  from `config/glow/gruvbox.json` (see [Markdown style](#markdown-style)).
+- Code inside fenced blocks (php, sh, yaml, json, go, html, javascript,
+  dockerfile, terraform) is **syntax highlighted** in the editor itself.
+- `gc` / `gcc` comments lines, and `gx` opens the link under the cursor.
+
+Outside Vim, use `md` in the shell (see [Shell](#shell-zsh)).
 
 ### Git (fugitive + gitgutter)
 
@@ -363,6 +380,43 @@ In **insert mode all the usual keys still work**, like in any shell on macOS:
 direnv loads and unloads `.envrc` files when you `cd`. On older fzf versions
 (Ubuntu apt) the integration scripts are sourced instead of `fzf --zsh`.
 
+### Markdown in the terminal
+
+| Command | Action |
+| --- | --- |
+| `md file.md` | Render the file in a scrollable pager (`q` to quit) |
+| `md` | Browse the Markdown files of the current directory (glow's file browser) |
+| `glow -p file.md` | Same renderer, called directly; `glow https://...` renders a remote README |
+| `bat file.md` | Syntax-highlighted source, not rendered |
+
+`md` uses glow when installed (macOS) and falls back to `bat`, then `less`,
+so it also works on Ubuntu servers. `GLOW_STYLE` points glow at the gruvbox
+style, so a plain `glow file.md` is styled the same way.
+
+### Markdown style
+
+glow's built-in `dark` style paints background blocks (violet behind titles,
+gray behind inline code) that clash with gruvbox and a translucent terminal.
+`config/glow/gruvbox.json` (linked to `~/.config/glow/gruvbox.json`) uses
+**no background colors at all**:
+
+| Element | Rendering |
+| --- | --- |
+| `#` title | yellow, bold, underlined, with a `▌` marker |
+| `##` title | green, bold, underlined |
+| `###` to `######` | aqua, blue, purple, gray, bold, with the `#` marks kept |
+| Bold / italic / strike | orange bold / purple italic / gray crossed out |
+| Inline code | orange |
+| Code blocks | gruvbox syntax highlighting, indented |
+| Links | blue bold text, gray underlined URL |
+| Quotes | gray italic with a `▌` bar |
+| Lists, tasks | `•` bullets, numbers, `[✓]` and `[ ]` |
+| Tables | box-drawing borders |
+
+To change a color, edit the hex values in that file and preview again (no
+restart needed). The code-block colors are quantized to the 256-color palette by
+the renderer, so they are close to, not exactly, the gruvbox hexes.
+
 ### Options
 
 - History: 50,000 entries, shared between terminals, no consecutive
@@ -395,7 +449,7 @@ direnv loads and unloads `.envrc` files when you `cd`. On older fzf versions
 
 ### Tools installed by the Brewfile
 
-Shell: starship, fzf, zoxide, direnv. CLI: ripgrep, fd, bat, jq, yq. Terminal:
+Shell: starship, fzf, zoxide, direnv. CLI: ripgrep, fd, bat, jq, yq, glow. Terminal:
 tmux, vim. Git: git. DevOps: awscli, kubectl, helm, k9s, terraform, ansible.
 Editor tooling: node, go, gopls, universal-ctags, shellcheck, hadolint,
 yamllint, ansible-lint, prettier, terraform-ls, bash-language-server,

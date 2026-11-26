@@ -15,6 +15,8 @@
 "   <leader>gl  git log          ]c / [c     next/prev hunk
 "   <leader>hs / hp / hu   stage / preview / undo hunk (gitgutter)
 "
+"   <leader>m   preview Markdown (glow; in a tmux popup when inside tmux)
+"
 "   LSP / ALE (macOS only):
 "   gd          definition       gr          references     K           hover
 "   <leader>s   symbol search (class / function by name, then <CR>)
@@ -84,6 +86,51 @@ if s:has('fzf') && s:has('fzf.vim') && executable('fzf')
     nnoremap <leader>/ :RG<CR>
     nnoremap <leader>? :RGAll<CR>
     nnoremap <leader>* :Rg <C-r><C-w><CR>
+endif
+
+" ---------------------------------------------------------------------------
+" Markdown preview (glow)
+" ---------------------------------------------------------------------------
+
+" Renders the current file in the terminal: in a tmux popup when inside tmux
+" (q closes it and you land back in Vim), full screen otherwise.
+function! s:MarkdownPreview() abort
+    if !executable('glow')
+        echohl WarningMsg | echo 'glow is not installed' | echohl None
+        return
+    endif
+
+    if expand('%') ==# ''
+        echo 'No file to preview'
+        return
+    endif
+
+    silent update
+
+    let l:file = expand('%:p')
+
+    " Gruvbox style without background colors (see config/glow/gruvbox.json).
+    " Passed explicitly: a tmux popup may not inherit GLOW_STYLE.
+    let l:style = expand('~/.config/glow/gruvbox.json')
+    let l:glow = 'glow --pager '
+    if filereadable(l:style)
+        let l:glow = 'glow --style ' . shellescape(l:style) . ' --pager '
+    endif
+
+    if $TMUX !=# ''
+        call system('tmux display-popup -E -w 90% -h 90% '
+        \ . shellescape(l:glow . shellescape(l:file)))
+    else
+        execute 'silent !' . l:glow . shellescape(l:file, 1)
+        redraw!
+    endif
+endfunction
+
+if executable('glow')
+    augroup markdown_preview
+        autocmd!
+        autocmd FileType markdown nnoremap <buffer> <silent> <leader>m :call <SID>MarkdownPreview()<CR>
+    augroup END
 endif
 
 " ---------------------------------------------------------------------------

@@ -220,6 +220,12 @@ silent! set wildoptions=pum
 
 set mouse=a
 
+" Highlight code inside fenced Markdown blocks (```php, ```sh, ...).
+let g:markdown_fenced_languages = [
+\   'php', 'sh', 'bash=sh', 'yaml', 'json', 'go', 'html',
+\   'javascript', 'js=javascript', 'dockerfile', 'terraform',
+\]
+
 " Optional packages bundled with Vim; each is skipped silently when the
 " installed Vim is too old to ship it.
 silent! packadd matchit

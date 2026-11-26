@@ -102,6 +102,7 @@ if [[ "$PLATFORM" == "macos" ]]; then
     add_link "$DOTFILES_DIR/config/ghostty/config.ghostty" "$HOME/.config/ghostty/config.ghostty"
     add_link "$DOTFILES_DIR/config/zed/settings.json" "$HOME/.config/zed/settings.json"
     add_link "$DOTFILES_DIR/config/zed/keymap.json" "$HOME/.config/zed/keymap.json"
+    add_link "$DOTFILES_DIR/config/glow/gruvbox.json" "$HOME/.config/glow/gruvbox.json"
 fi
 
 preflight_links() {

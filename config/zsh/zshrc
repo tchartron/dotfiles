@@ -123,6 +123,29 @@ fi
 export BAT_THEME="gruvbox-dark"
 
 # ---------------------------------------------------------------------------
+# Markdown
+# ---------------------------------------------------------------------------
+
+# glow renders Markdown (styled titles, code blocks, tables). The gruvbox style
+# has no background colors, unlike glow's built-in "dark" style.
+if [[ -r "$HOME/.config/glow/gruvbox.json" ]]; then
+    export GLOW_STYLE="$HOME/.config/glow/gruvbox.json"
+fi
+
+# md file.md  renders a Markdown file in the terminal (scrollable; q to quit).
+# md          browses the Markdown files of the current directory (glow only).
+# Falls back to bat, then less, on machines without glow (Ubuntu servers).
+md() {
+    if command -v glow >/dev/null 2>&1; then
+        if (( $# )); then glow --pager "$@"; else glow; fi
+    elif command -v bat >/dev/null 2>&1; then
+        bat --language=markdown "$@"
+    else
+        less "$@"
+    fi
+}
+
+# ---------------------------------------------------------------------------
 # Aliases
 # ---------------------------------------------------------------------------
 
