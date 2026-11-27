@@ -42,7 +42,26 @@ endfunction
 " Colors
 " ---------------------------------------------------------------------------
 
+" Transparent background: gruvbox paints an opaque #282828 on every cell, which
+" hides Ghostty's background-opacity and blur. Clearing the background of the
+" text area and the gutter lets the terminal's own background show through.
+" Must be defined before `colorscheme`, and re-runs when the scheme reloads.
+function! s:TransparentBackground() abort
+    for l:group in ['Normal', 'NonText', 'EndOfBuffer', 'SignColumn', 'FoldColumn',
+    \               'LineNr', 'CursorLineNr',
+    \               'GruvboxRedSign', 'GruvboxGreenSign', 'GruvboxYellowSign',
+    \               'GruvboxBlueSign', 'GruvboxPurpleSign', 'GruvboxAquaSign',
+    \               'GruvboxOrangeSign']
+        execute 'highlight ' . l:group . ' guibg=NONE ctermbg=NONE'
+    endfor
+endfunction
+
 if s:has('gruvbox')
+    augroup transparent_background
+        autocmd!
+        autocmd ColorScheme gruvbox call s:TransparentBackground()
+    augroup END
+
     silent! colorscheme gruvbox
 endif
 

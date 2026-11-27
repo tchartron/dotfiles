@@ -1,7 +1,8 @@
 # ~/.config/starship.toml
 #
-# Gruvbox dark, one rounded segment per module. Each segment draws its own
-# caps, so it can appear or disappear without breaking its neighbours.
+# Gruvbox dark, one discreet rounded segment per module (tonal: bg1 pill,
+# coloured text). Each segment draws its own caps, so it can appear or
+# disappear without breaking its neighbours.
 # Needs a Nerd Font (Maple Mono NF, see the Brewfile). Local macOS only:
 # the Ubuntu servers keep the plain zsh prompt.
 
@@ -19,21 +20,23 @@ $line_break\
 $character"""
 
 [palettes.gruvbox_dark]
-bg0 = "#282828"
-fg1 = "#ebdbb2"
-red = "#cc241d"
-green = "#98971a"
-yellow = "#d79921"
-blue = "#458588"
-aqua = "#689d6a"
-orange = "#d65d0e"
+# Pills share one background (bg1 here is gruvbox bg2, light enough to stay
+# visible on a translucent terminal). Only the text is coloured, with the
+# bright gruvbox accents.
+bg1 = "#504945"
+red = "#fb4934"
+green = "#b8bb26"
+yellow = "#fabd2f"
+blue = "#83a598"
+aqua = "#8ec07c"
+orange = "#fe8019"
 
 # ---------------------------------------------------------------------------
 # Directory
 # ---------------------------------------------------------------------------
 
 [directory]
-format = "[](fg:yellow)[ $path$read_only ](fg:bg0 bg:yellow bold)[](fg:yellow) "
+format = "[](fg:bg1)[ $path$read_only ](fg:yellow bg:bg1)[](fg:bg1) "
 # Keep the ~ visible for most paths, and mark a cut path with …/ so it is
 # clear that parent directories are hidden.
 truncation_length = 4
@@ -46,12 +49,12 @@ read_only = " "
 # ---------------------------------------------------------------------------
 
 [git_branch]
-format = "[](fg:green)[ $symbol$branch ](fg:bg0 bg:green bold)[](fg:green) "
+format = "[](fg:bg1)[ $symbol$branch ](fg:green bg:bg1)[](fg:bg1) "
 symbol = " "
 
 [git_status]
 # The outer ( ) hides the whole pill (caps included) when the repo is clean.
-format = "([](fg:orange)[ $all_status$ahead_behind ](fg:bg0 bg:orange bold)[](fg:orange) )"
+format = "([](fg:bg1)[ $all_status$ahead_behind ](fg:orange bg:bg1)[](fg:bg1) )"
 conflicted = "!"
 ahead = "⇡${count}"
 behind = "⇣${count}"
@@ -69,7 +72,7 @@ deleted = "✘"
 # Only shown in Kubernetes projects (not on every prompt).
 [kubernetes]
 disabled = false
-format = "[](fg:blue)[ 󱃾 $context( \\($namespace\\)) ](fg:fg1 bg:blue bold)[](fg:blue) "
+format = "[](fg:bg1)[ 󱃾 $context( \\($namespace\\)) ](fg:blue bg:bg1)[](fg:bg1) "
 detect_extensions = []
 detect_files = [
     "kustomization.yaml",
@@ -91,7 +94,7 @@ detect_folders = [
 # ---------------------------------------------------------------------------
 
 [docker_context]
-format = "[](fg:aqua)[ 󰡨 $context ](fg:bg0 bg:aqua bold)[](fg:aqua) "
+format = "[](fg:bg1)[ 󰡨 $context ](fg:aqua bg:bg1)[](fg:bg1) "
 only_with_files = true
 detect_files = [
     "docker-compose.yml",
@@ -107,7 +110,7 @@ detect_files = [
 
 [status]
 disabled = false
-format = "[](fg:red)[ $symbol$status ](fg:fg1 bg:red bold)[](fg:red) "
+format = "[](fg:bg1)[ $symbol$status ](fg:red bg:bg1)[](fg:bg1) "
 symbol = "✘ "
 success_symbol = ""
 recognize_signal_code = true

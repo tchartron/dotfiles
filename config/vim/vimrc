@@ -68,7 +68,21 @@ set signcolumn=yes
 set scrolloff=5
 set sidescrolloff=5
 
-set nowrap
+" Wrap long lines visually (the file itself is not changed). Wrap at word
+" boundaries, keep the indentation and mark continuation lines with an arrow.
+set wrap
+if has('linebreak')
+    set linebreak
+    set breakindent
+    let &showbreak = '↪ '
+endif
+
+" j/k move by screen line on wrapped lines. With a count (the relative line
+" numbers: 5j) they keep moving by real lines.
+nnoremap <expr> j v:count ? 'j' : 'gj'
+nnoremap <expr> k v:count ? 'k' : 'gk'
+xnoremap <expr> j v:count ? 'j' : 'gj'
+xnoremap <expr> k v:count ? 'k' : 'gk'
 
 set splitright
 set splitbelow
