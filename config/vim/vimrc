@@ -203,8 +203,22 @@ endif
 " terminal as an OSC 52 sequence instead: Ghostty puts them on the Mac
 " clipboard, and tmux forwards them when `set-clipboard on` is set.
 " Local sessions are left alone.
+function! s:SendOsc52(text) abort
+    if !exists('*echoraw')
+        return
+    endif
+
+    " Terminals drop very large sequences.
+    if strlen(a:text) > 70000
+        return
+    endif
+
+    let l:b64 = substitute(system('base64 | tr -d "\n"', a:text), '\n', '', 'g')
+    call echoraw("\e]52;c;" . l:b64 . "\x07")
+endfunction
+
 function! s:YankToTerminal() abort
-    if v:event.operator !=# 'y' || v:event.regname !=# '' || !exists('*echoraw')
+    if v:event.operator !=# 'y' || v:event.regname !=# ''
         return
     endif
 
@@ -213,13 +227,7 @@ function! s:YankToTerminal() abort
         let l:text .= "\n"
     endif
 
-    " Terminals drop very large sequences.
-    if strlen(l:text) > 70000
-        return
-    endif
-
-    let l:b64 = substitute(system('base64 | tr -d "\n"', l:text), '\n', '', 'g')
-    call echoraw("\e]52;c;" . l:b64 . "\x07")
+    call s:SendOsc52(l:text)
 endfunction
 
 if $SSH_TTY !=# '' && executable('base64')
@@ -228,6 +236,31 @@ if $SSH_TTY !=# '' && executable('base64')
         autocmd TextYankPost * call s:YankToTerminal()
     augroup END
 endif
+
+" Copy the current file's path. <leader>yp: relative to the working directory
+" (what you want for a ticket or a grep), <leader>yP: absolute. Setting a
+" register does not trigger TextYankPost, so over SSH the text is sent to the
+" terminal explicitly.
+function! s:CopyPath(modifier) abort
+    let l:path = expand('%' . a:modifier)
+    if l:path ==# ''
+        echo 'No file name'
+        return
+    endif
+
+    call setreg('"', l:path)
+    if has('clipboard')
+        call setreg('*', l:path)
+        call setreg('+', l:path)
+    endif
+    if $SSH_TTY !=# '' && executable('base64')
+        call s:SendOsc52(l:path)
+    endif
+    echo 'Copied: ' . l:path
+endfunction
+
+nnoremap <silent> <leader>yp :call <SID>CopyPath(':.')<CR>
+nnoremap <silent> <leader>yP :call <SID>CopyPath(':p')<CR>
 
 " ---------------------------------------------------------------------------
 " Completion

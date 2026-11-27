@@ -160,8 +160,11 @@ leader. On a server without the plugin layer, only the stock Vim keys work.
 | `]d` / `[d` | Next / previous error |
 | `<Space>F` | Fix and format the file now |
 | `<Space>gs` `gd` `gb` `gl` | Git status / diff / blame / log |
+| `gq` | Close a Git view (status, log, blame) |
 | `]c` / `[c` | Next / previous changed hunk |
 | `<Space>hs` `hp` `hu` | Stage / preview / undo a hunk |
+| `<Space>yp` / `<Space>yP` | Copy the file path (relative to the working directory / absolute) |
+| `j` / `k` | Move by screen line on wrapped lines (a count, `5j`, moves by real lines) |
 | `:Rename` `:Delete` `:Mkdir` `:SudoWrite` | File operations (vim-eunuch) |
 | `<Space><Space>` | Clear search highlighting |
 
@@ -189,7 +192,9 @@ variable. With the language server on macOS it follows the symbol across files
 
 Inside any fzf list: type to filter, `Ctrl-J/K` or arrows to move, `Enter` to
 open, `Ctrl-T` / `Ctrl-X` / `Ctrl-V` to open in a tab / split / vsplit, `Tab`
-to mark several results, then `Enter` to send them to the **quickfix list**.
+to mark several results (`Alt-a` marks all, `Alt-d` unmarks all), then `Enter`
+to send them to the **quickfix list**. `Alt` is the left Option key (Ghostty
+`macos-option-as-alt = left`).
 
 Other fzf commands (type them with `:`): `:GFiles` (tracked files), `:GFiles?`
 (changed files), `:Lines`, `:BLines` (search lines in all / this buffer),
@@ -286,16 +291,32 @@ Outside Vim, use `md` in the shell (see [Shell](#shell-zsh)).
 
 | Keys | Action |
 | --- | --- |
-| `<Space>gs` | Git status window (`-` stage/unstage, `cc` commit, `dv` diff) |
-| `<Space>gd` | Diff split of the current file |
-| `<Space>gb` | Blame |
+| `<Space>gs` | Git status window (`-` stage/unstage, `=` inline diff, `dd` side-by-side diff, `cc` commit, `ca` amend, `X` discard, `g?` all keys) |
+| `<Space>gd` | Diff split of the current file against the index (`]c` / `[c` between changes, `do` / `dp` take / give a change) |
+| `<Space>gb` | Blame (`Enter` on a line opens the commit) |
 | `<Space>gl` | Log graph |
+| `gq` | **Close the Git view** you are in (status, log / show output, blame). Plain `q` does not work in fugitive |
 | `]c` / `[c` | Next / previous changed hunk |
 | `<Space>hs` / `hp` / `hu` | Stage / preview / undo the hunk under the cursor |
 | `ic` / `ac` | Hunk text objects (e.g. `dic`) |
 
 The status line shows the current branch and, on macOS, ALE error and warning
-counts (`E:2 W:1`). Changed lines show in the sign column.
+counts (`E:2 W:1`).
+
+**Changed lines in the sign column** (gitgutter, like an IDE gutter): green `+`
+added, yellow `~` modified, red `_` deleted. They compare the buffer with the
+**index**, so a hunk's marker disappears once you stage it. Extra views:
+
+| Command | Effect |
+| --- | --- |
+| `:GitGutterLineHighlightsToggle` | Highlight the whole changed line |
+| `:GitGutterLineNrHighlightsToggle` | Color the line numbers instead |
+| `:GitGutterFold` | Fold everything except the changed hunks (again to unfold) |
+| `:GitGutterToggle` | Turn the markers off / on |
+
+A diff split has no `gq`, because it is made of normal file windows: close the
+`fugitive://` side with `Ctrl-W c`, then `:diffoff` if the other window stays in
+diff mode. In a commit message, `:wq` commits and `:q!` aborts.
 
 ### Editing plugins
 
@@ -318,7 +339,10 @@ tags and keywords), `comment` (`gc` / `gcc` toggle comments), `editorconfig`,
 ### Core settings (work everywhere)
 
 - **Display:** line numbers (relative in normal mode, absolute in insert),
-  cursor line, sign column always on, 5 lines of scroll margin, no wrapping,
+  cursor line, sign column always on, 5 lines of scroll margin, **long lines
+  wrapped** at word boundaries (indented, continuation marked `↪`; display only,
+  the file is not changed; `yow` toggles it), **transparent background** (the
+  gruvbox background is cleared so Ghostty's opacity and blur show through),
   visible tabs / trailing spaces / non-breaking spaces, truecolor when the
   terminal supports it, 256 colors on a basic `$TERM`.
 - **Indent:** 4 spaces, 2 for YAML, Helm and Terraform.
@@ -333,6 +357,9 @@ tags and keywords), `comment` (`gc` / `gcc` toggle comments), `editorconfig`,
 - **Clipboard:** yanks and deletes use the system clipboard. **Over SSH**, plain
   `y` yanks are sent to your Mac clipboard through OSC 52 (works through tmux
   too), so copying from a remote Vim just works.
+- **Copy the file path:** `<Space>yp` copies it relative to the working
+  directory, `<Space>yP` the absolute path. Works over SSH too. Without the
+  config: `:let @+ = expand('%:p')`.
 - **Mouse:** enabled.
 - **Tags:** `<C-]>` jumps to a tag; generate them with `ctags -R .`.
 - **Tools:** `:grep` uses ripgrep; `vendor`, `node_modules`, `.git` and
@@ -374,11 +401,18 @@ what you copied. Use:
 - `"_d` deletes without touching any register or the clipboard.
 - `"ayy` yanks into register `a`, `"ap` pastes it; `:reg` lists them all.
 
-**Windows and buffers**
-- `:vsplit file` / `:split file`, `Ctrl-W h j k l` to move, `Ctrl-W =` to equalize,
-  `Ctrl-W o` to keep only the current window. Use tmux panes for terminals and
-  Vim splits to see two files side by side.
+**Windows, tabs and buffers**
+- `:vsplit file` / `:split file`, `Ctrl-W h j k l` to move, `Ctrl-W w` to cycle,
+  `Ctrl-W c` to close, `Ctrl-W =` to equalize, `Ctrl-W o` to keep only the
+  current window. `Ctrl-W _` / `Ctrl-W |` maximize height / width,
+  `Ctrl-W H J K L` move the window to an edge, `Ctrl-W r` swaps two. Use tmux
+  panes for terminals and Vim splits to see two files side by side.
+- A **tab** is a layout of windows, not a file: `gt` / `gT` next / previous
+  (`3gt` goes to tab 3), `:tabnew`, `:tabclose`, `:tabonly`, `:tabs`,
+  `Ctrl-W T` moves the current window into its own tab. From fzf, `Ctrl-T` opens
+  the result in a tab, `Ctrl-X` / `Ctrl-V` in a split / vsplit.
 - `:ls` lists buffers, `]b` / `[b` switch, `:bd` closes one, `<Space>b` fuzzy picks.
+  Treat buffers as your open files and tabs as separate contexts.
 
 **Undo and redo**
 - `u` undo, `Ctrl-R` redo, `U` undo all changes on a line. Undo is persistent: it
@@ -575,9 +609,13 @@ Maple Mono NF, Victor Mono.
 
 macOS only, two lines: a row of rounded **pills**, then the `❯` prompt
 character. Each pill draws its own caps, so it can appear or disappear without
-leaving gaps. A blank line separates commands.
+leaving gaps. A blank line separates commands. The pills are **tonal**: they
+all share one dark background (gruvbox `bg2`, `#504945`) and only the text is
+colored, with the bright gruvbox accents. To make them fainter or stronger,
+change `bg1` in the palette of `config/starship/starship.toml` (`#3c3836` is
+almost invisible on a translucent terminal, `#665c54` is more visible).
 
-| Pill | Color | Shows |
+| Pill | Text color | Shows |
 | --- | --- | --- |
 | Directory | yellow | Path with `~` for home, last 4 components; a longer path is cut and marked `…/` (`…/vinatis/devops/internal/outline`). Lock icon if read-only |
 | Git branch | green | Branch name |
